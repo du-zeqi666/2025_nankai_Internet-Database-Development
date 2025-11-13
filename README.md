@@ -26,7 +26,7 @@ eg:DBIS实验室_需求文档(0912635_0912734).pdf
 文档命名方式：队名_设计文档(学号1_学号2_学号3)  
 eg:DBIS实验室_设计文档(0912635_0912734).pdf  
 ## 3.实现文档  
-https://github.com/BlankerL/DXY-COVID-19-Crawler
+https://github.com/BlankerL/DXY-COVID-19-Crawler  
 1.实现文档：说明实现过程及结果，可以包括但不限于：  
 任务分工过程(例如Tower截图)，Git提交记录，主要代码及目录展示。  
 2.提交实现文档（最后和大作业一起交）  
