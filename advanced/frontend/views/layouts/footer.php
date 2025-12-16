@@ -20,8 +20,8 @@ use yii\helpers\Url;
             <div class="footer-section">
                 <h3>联系方式</h3>
                 <ul>
-                    <li>邮箱：contact@warmemorial.cn</li>
-                    <li>地址：北京市丰台区卢沟桥宛平城内街101号</li>
+                    <li>邮箱：2313508@mail.nankai.edu.cn</li>
+                    <li>地址：天津市津南区同砚路38号</li>
                 </ul>
             </div>
         </div>

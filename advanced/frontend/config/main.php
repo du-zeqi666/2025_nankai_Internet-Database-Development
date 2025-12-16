@@ -39,13 +39,19 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
+                'rules' => [
                 '/' => 'site/index',
                 'timeline' => 'site/timeline',
                 'hero' => 'site/hero',
-                'hero/<id:\d+>' => 'site/hero-detail',
+                'hero/<id:\\d+>' => 'site/hero-detail',
                 'battles' => 'site/battles',
                 'memorial' => 'site/memorial',
+                // 前端页面路由
+                'heroes' => 'heroes/index',
+                'heroes/<id:\\d+>' => 'heroes/view',
+                // 简单 API 路由（为前端筛选/详情提供 JSON）
+                'api/heroes' => 'api-hero/index',
+                'api/heroes/<id:\\d+>' => 'api-hero/view',
             ],
         ],
     ],

@@ -8,6 +8,6 @@ class TimelineController extends Controller
 {
     public function actionIndex()
     {
-        return $this->renderContent($this->renderFile('@app/war-memorial-frontend/templates/pages/timeline/index.php'));
+        return $this->render('index');
     }
 }

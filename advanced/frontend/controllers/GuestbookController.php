@@ -8,6 +8,6 @@ class GuestbookController extends Controller
 {
     public function actionIndex()
     {
-        return $this->renderContent($this->renderFile('@app/war-memorial-frontend/templates/pages/guestbook/index.php'));
+        return $this->render('index');
     }
 }

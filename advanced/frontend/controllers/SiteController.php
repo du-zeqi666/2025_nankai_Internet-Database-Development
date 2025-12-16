@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\Hero;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -74,7 +75,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // 获取首页展示的英雄，例如取前4个
+        $heroes = Hero::find()->limit(4)->all();
+        return $this->render('index', [
+            'heroes' => $heroes,
+        ]);
     }
 
     /**
