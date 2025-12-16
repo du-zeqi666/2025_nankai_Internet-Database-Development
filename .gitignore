@@ -1,68 +1,30 @@
-# Yii 框架相关
-/yii
-/yii_test
-/yii_test.bat
-
-# 编辑器配置
+# IDE 配置
 .idea
+.vscode
 nbproject
 .buildpath
 .project
 .settings
-.vscode
-
-# 系统文件
-Thumbs.db
-.DS_Store
-
-# Composer 相关
-/vendor
-composer.phar
-
-# PHPUnit
-phpunit.phar
-/phpunit.xml
-
-# Vagrant
-/.vagrant
-
-# 自动生成的入口文件
-/frontend/web/index.php
-/frontend/web/index-test.php
-/frontend/web/robots.txt
-/backend/web/index.php
-/backend/web/index-test.php
-/backend/web/robots.txt
-
-# Runtime 和 logs
-/backend/runtime/*
-!/backend/runtime/.gitkeep
-/backend/web/assets/*
-!/backend/web/assets/.gitkeep
-
-/console/runtime/*
-!/console/runtime/.gitkeep
-
-/frontend/runtime/*
-!/frontend/runtime/.gitkeep
-/frontend/web/assets/*
-!/frontend/web/assets/.gitkeep
-
-# 本地配置文件（包含敏感信息）
-/common/config/*-local.php
-/backend/config/*-local.php
-/console/config/*-local.php
-/frontend/config/*-local.php
-/environments/*/config/*-local.php
-
-# 前端工程化
-/frontend/war-memorial-frontend/node_modules/
-/web/assets/build/
-
-# 临时文件和测试输出
-.env
-.env.local
-*.log
 *.swp
 *.swo
 *~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 依赖和编译文件（在 advanced 中由其自己的 .gitignore 管理）
+/advanced/vendor/
+/advanced/node_modules/
+/advanced/.env
+/advanced/.env.local
+
+# 虚拟环境
+/.vagrant
+/vagrant/.vagrant
+
+# 临时文件
+*.log
+
+# 项目特定的忽略规则
+# 课件、实验记录、项目文档的具体规则可在各目录中定义
