@@ -1,0 +1,301 @@
+// ============================================
+// ⚔️ Battle Detail Page Styles
+// ============================================
+
+.battle-detail-page {
+    padding-top: $header-height;
+    background-color: map-get($neutral-colors, 'parchment'); // 使用羊皮纸背景色增加历史感
+    min-height: 100vh;
+
+    // 1. Battle Header (Immersive)
+    .battle-header {
+        position: relative;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: map-get($neutral-colors, 'white');
+        overflow: hidden;
+
+        &__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: sepia(0.3) contrast(1.2); // 增加老照片质感
+            z-index: 1;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.6);
+            }
+        }
+
+        &__content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        &__title {
+            font-family: map-get($font-families, 'heading');
+            font-size: map-get($font-sizes, 'display-1');
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.2em;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            
+            @include respond-below('md') {
+                font-size: map-get($font-sizes, 'display-3');
+            }
+        }
+
+        &__info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            font-size: map-get($font-sizes, 'h4');
+            font-family: map-get($font-families, 'heading');
+            
+            @include respond-below('sm') {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .date, .location {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                
+                i {
+                    color: map-get($primary-colors, 'golden-victory');
+                }
+            }
+        }
+    }
+
+    // 2. Battle Stats Bar
+    .battle-stats {
+        background: map-get($primary-colors, 'memorial-red-dark');
+        color: white;
+        padding: 2rem 0;
+        margin-top: -4rem; // Overlap header
+        position: relative;
+        z-index: 10;
+        box-shadow: map-get($shadows, 'lg');
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+            
+            @include respond-below('md') {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        &__item {
+            .label {
+                display: block;
+                font-size: map-get($font-sizes, 'body-sm');
+                opacity: 0.8;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            
+            .value {
+                font-family: map-get($font-families, 'mono');
+                font-size: map-get($font-sizes, 'h3');
+                font-weight: bold;
+                color: map-get($primary-colors, 'golden-light');
+            }
+        }
+    }
+
+    // 3. Main Content
+    .battle-content {
+        padding: 5rem 0;
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            
+            h2 {
+                font-family: map-get($font-families, 'heading');
+                font-size: map-get($font-sizes, 'h2');
+                color: map-get($primary-colors, 'memorial-red-dark');
+                display: inline-block;
+                padding-bottom: 1rem;
+                border-bottom: 3px double map-get($primary-colors, 'golden-victory');
+            }
+        }
+    }
+
+    // 4. Interactive Map Section
+    .battle-map-container {
+        height: 600px;
+        background: map-get($neutral-colors, 'gray-200');
+        border-radius: map-get($border-radius, 'lg');
+        overflow: hidden;
+        margin-bottom: 5rem;
+        box-shadow: map-get($shadows, 'card');
+        position: relative;
+        
+        // Map controls overlay
+        .map-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: map-get($border-radius, 'md');
+            box-shadow: map-get($shadows, 'md');
+            z-index: 10;
+            
+            button {
+                display: block;
+                width: 36px;
+                height: 36px;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                color: map-get($neutral-colors, 'gray-700');
+                
+                &:hover {
+                    color: map-get($primary-colors, 'memorial-red');
+                }
+            }
+        }
+    }
+
+    // 5. Battle Process (Timeline)
+    .battle-process {
+        margin-bottom: 5rem;
+        
+        .process-step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            
+            @include respond-below('md') {
+                flex-direction: column;
+            }
+            
+            &__date {
+                flex: 0 0 150px;
+                text-align: right;
+                font-family: map-get($font-families, 'mono');
+                font-size: map-get($font-sizes, 'h4');
+                color: map-get($primary-colors, 'memorial-red');
+                padding-top: 0.5rem;
+                
+                @include respond-below('md') {
+                    text-align: left;
+                }
+            }
+            
+            &__content {
+                flex: 1;
+                background: white;
+                padding: 2rem;
+                border-radius: map-get($border-radius, 'md');
+                box-shadow: map-get($shadows, 'sm');
+                border-left: 4px solid map-get($primary-colors, 'golden-victory');
+                
+                h3 {
+                    margin-bottom: 1rem;
+                    font-size: map-get($font-sizes, 'h4');
+                }
+                
+                p {
+                    color: map-get($neutral-colors, 'gray-600');
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+
+    // 6. Commanders Section
+    .commanders-section {
+        margin-bottom: 5rem;
+        
+        .commanders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            
+            .commander-card {
+                text-align: center;
+                
+                &__img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 1rem;
+                    border: 4px solid map-get($primary-colors, 'golden-victory');
+                    box-shadow: map-get($shadows, 'md');
+                }
+                
+                &__name {
+                    font-size: map-get($font-sizes, 'h5');
+                    font-weight: bold;
+                    margin-bottom: 0.25rem;
+                }
+                
+                &__role {
+                    font-size: map-get($font-sizes, 'body-sm');
+                    color: map-get($neutral-colors, 'gray-600');
+                }
+            }
+        }
+    }
+
+    // 7. Significance Section
+    .significance-section {
+        background: url('../assets/images/textures/rice-paper.png');
+        padding: 4rem;
+        border: 1px solid map-get($secondary-colors, 'ancient-bronze');
+        position: relative;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid map-get($primary-colors, 'memorial-red');
+            pointer-events: none;
+        }
+        
+        blockquote {
+            font-family: map-get($font-families, 'heading');
+            font-size: map-get($font-sizes, 'h4');
+            line-height: 1.8;
+            text-align: center;
+            color: map-get($primary-colors, 'memorial-red-dark');
+            margin: 0;
+            
+            &::before, &::after {
+                content: '"';
+                font-size: 4rem;
+                color: rgba(196, 30, 58, 0.2);
+                vertical-align: middle;
+                line-height: 0;
+            }
+        }
+    }
+}

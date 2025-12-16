@@ -1,0 +1,178 @@
+// ============================================
+// 🔍 Search Bar Component
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Search Container
+// --------------------------------------------
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto map-get($spacing, '6');
+}
+
+// --------------------------------------------
+// 2. Search Input Group
+// --------------------------------------------
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid map-get($neutral-colors, 'gray-300');
+    border-radius: map-get($border-radius, 'full');
+    padding: 5px 5px 5px map-get($spacing, '4');
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    &:focus-within {
+        border-color: map-get($primary-colors, 'memorial-red');
+        box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
+        transform: translateY(-1px);
+    }
+
+    i.search-icon {
+        color: map-get($neutral-colors, 'gray-400');
+        font-size: 1.1rem;
+        margin-right: map-get($spacing, '2');
+    }
+
+    input {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        color: map-get($secondary-colors, 'ink-black');
+        background: transparent;
+        padding: map-get($spacing, '2') 0;
+
+        &::placeholder {
+            color: map-get($neutral-colors, 'gray-400');
+        }
+    }
+
+    button.search-btn {
+        background-color: map-get($primary-colors, 'memorial-red');
+        color: #fff;
+        border: none;
+        border-radius: map-get($border-radius, 'full');
+        padding: map-get($spacing, '2') map-get($spacing, '5');
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: darken(map-get($primary-colors, 'memorial-red'), 10%);
+        }
+    }
+}
+
+// --------------------------------------------
+// 3. Advanced Filters (Collapsible)
+// --------------------------------------------
+
+.search-filters {
+    margin-top: map-get($spacing, '3');
+    padding: map-get($spacing, '3');
+    background-color: map-get($neutral-colors, 'gray-100');
+    border-radius: map-get($border-radius, 'md');
+    display: none; // Toggled via JS
+    
+    &.active {
+        display: block;
+        animation: slideDown 0.3s ease;
+    }
+
+    .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: map-get($spacing, '3');
+        
+        .filter-group {
+            flex: 1;
+            min-width: 150px;
+            
+            label {
+                display: block;
+                font-size: 0.8rem;
+                font-weight: bold;
+                margin-bottom: 4px;
+                color: map-get($neutral-colors, 'gray-600');
+            }
+            
+            select {
+                width: 100%;
+                padding: 6px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 4. Autocomplete Dropdown
+// --------------------------------------------
+
+.search-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: map-get($spacing, '4');
+    right: map-get($spacing, '4');
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 0 0 map-get($border-radius, 'md') map-get($border-radius, 'md');
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 50;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    
+    &.active {
+        display: block;
+    }
+
+    .autocomplete-item {
+        padding: map-get($spacing, '2') map-get($spacing, '3');
+        cursor: pointer;
+        border-bottom: 1px solid #f5f5f5;
+        display: flex;
+        align-items: center;
+        gap: map-get($spacing, '2');
+        
+        &:last-child {
+            border-bottom: none;
+        }
+        
+        &:hover {
+            background-color: map-get($neutral-colors, 'gray-100');
+        }
+        
+        .item-icon {
+            color: map-get($neutral-colors, 'gray-400');
+            font-size: 0.9rem;
+        }
+        
+        .item-text {
+            font-size: 0.95rem;
+            color: map-get($secondary-colors, 'ink-black');
+            
+            strong {
+                color: map-get($primary-colors, 'memorial-red');
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

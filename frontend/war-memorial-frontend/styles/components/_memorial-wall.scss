@@ -1,0 +1,208 @@
+// ============================================
+// 🧱 Memorial Wall Component
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Wall Container
+// --------------------------------------------
+
+.memorial-wall-container {
+    padding: map-get($spacing, '8') 0;
+    background-color: map-get($secondary-colors, 'parchment');
+    // background-image: url('../assets/images/textures/wall-texture.png');
+    min-height: 600px;
+    position: relative;
+    
+    // Overlay for solemn atmosphere
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%);
+        pointer-events: none;
+    }
+}
+
+// --------------------------------------------
+// 2. Masonry Grid
+// --------------------------------------------
+
+.wall-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: map-get($spacing, '4');
+    grid-auto-rows: 10px; // For JS masonry calculation
+    
+    @include respond-below('sm') {
+        grid-template-columns: 1fr;
+    }
+}
+
+// --------------------------------------------
+// 3. Message Card
+// --------------------------------------------
+
+.message-card {
+    background-color: #fff;
+    border-radius: map-get($border-radius, 'sm');
+    padding: map-get($spacing, '4');
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    break-inside: avoid;
+    margin-bottom: map-get($spacing, '4');
+    
+    // Paper texture
+    // background-image: url('../assets/images/textures/rice-paper.png');
+    
+    &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        z-index: 10;
+    }
+    
+    // Card Header
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: map-get($spacing, '3');
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: map-get($spacing, '2');
+        
+        .author {
+            font-weight: bold;
+            color: map-get($secondary-colors, 'ink-black');
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            
+            i {
+                margin-right: 5px;
+                color: map-get($neutral-colors, 'gray-500');
+            }
+        }
+        
+        .location {
+            font-size: 0.8rem;
+            color: map-get($neutral-colors, 'gray-500');
+        }
+    }
+    
+    // Card Body
+    .card-body {
+        font-family: map-get($font-families, 'body');
+        color: map-get($neutral-colors, 'gray-800');
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin-bottom: map-get($spacing, '3');
+        
+        // Quote style
+        &::before {
+            content: '“';
+            font-family: serif;
+            font-size: 2rem;
+            color: rgba(196, 30, 58, 0.2);
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            line-height: 1;
+        }
+    }
+    
+    // Card Footer
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: map-get($neutral-colors, 'gray-500');
+        
+        .date {
+            font-style: italic;
+        }
+        
+        .type-icon {
+            font-size: 1.2rem;
+            
+            &.flower { color: map-get($primary-colors, 'golden-victory'); }
+            &.candle { color: map-get($primary-colors, 'memorial-red'); }
+        }
+    }
+    
+    // Variations
+    &.card-flower {
+        border-top: 3px solid map-get($primary-colors, 'golden-victory');
+    }
+    
+    &.card-candle {
+        border-top: 3px solid map-get($primary-colors, 'memorial-red');
+    }
+}
+
+// --------------------------------------------
+// 4. Input Area
+// --------------------------------------------
+
+.wall-input-area {
+    background: #fff;
+    padding: map-get($spacing, '6');
+    border-radius: map-get($border-radius, 'lg');
+    box-shadow: map-get($shadows, 'lg');
+    margin-bottom: map-get($spacing, '8');
+    border: 1px solid #eee;
+    
+    h3 {
+        text-align: center;
+        margin-bottom: map-get($spacing, '4');
+        color: map-get($secondary-colors, 'ink-black');
+    }
+    
+    .input-group {
+        margin-bottom: map-get($spacing, '4');
+        
+        label {
+            display: block;
+            margin-bottom: map-get($spacing, '2');
+            font-weight: bold;
+            color: map-get($neutral-colors, 'gray-700');
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: map-get($spacing, '3');
+            border: 1px solid #ddd;
+            border-radius: map-get($border-radius, 'md');
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+            
+            &:focus {
+                outline: none;
+                border-color: map-get($primary-colors, 'memorial-red');
+                box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
+            }
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: map-get($spacing, '4');
+        
+        button {
+            min-width: 120px;
+        }
+    }
+}

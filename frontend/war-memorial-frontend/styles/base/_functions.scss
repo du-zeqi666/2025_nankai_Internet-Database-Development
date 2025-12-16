@@ -1,0 +1,277 @@
+// ============================================
+// 🧮 SCSS Functions
+// ============================================
+
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:string';
+@use 'variables' as *;
+
+// --------------------------------------------
+// 1. Unit Conversion
+// --------------------------------------------
+
+// Strip unit from value
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return math.div($number, ($number * 0 + 1));
+    }
+    @return $number;
+}
+
+// Convert px to rem
+@function rem($px-value) {
+    @return math.div(strip-unit($px-value), 16) * 1rem;
+}
+
+// Convert px to em
+@function em($px-value, $base: 16px) {
+    @return math.div(strip-unit($px-value), strip-unit($base)) * 1em;
+}
+
+// Convert rem to px
+@function to-px($rem-value) {
+    @return strip-unit($rem-value) * 16px;
+}
+
+// --------------------------------------------
+// 2. Color Manipulation
+// --------------------------------------------
+
+// Tint a color (mix with white)
+@function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+// Shade a color (mix with black)
+@function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
+
+// Calculate contrast color (black or white) based on background
+@function color-contrast($background, $dark: #000, $light: #fff) {
+    @if (lightness($background) > 60) {
+        @return $dark;
+    } @else {
+        @return $light;
+    }
+}
+
+// Get color from map safely
+@function get-color($map, $key) {
+    @if map.has-key($map, $key) {
+        @return map.get($map, $key);
+    }
+    @warn "Unknown color key `#{$key}` in map.";
+    @return null;
+}
+
+// Adjust brightness
+@function brightness($color, $percentage) {
+    @return adjust-color($color, $lightness: $percentage);
+}
+
+// Adjust saturation
+@function saturation($color, $percentage) {
+    @return adjust-color($color, $saturation: $percentage);
+}
+
+// Get complementary color
+@function complementary($color) {
+    @return adjust-hue($color, 180deg);
+}
+
+// Get analogous colors
+@function analogous($color, $angle: 30deg) {
+    $color1: adjust-hue($color, $angle);
+    $color2: adjust-hue($color, -$angle);
+    @return ($color1, $color2);
+}
+
+// Get triadic colors
+@function triadic($color) {
+    $color1: adjust-hue($color, 120deg);
+    $color2: adjust-hue($color, 240deg);
+    @return ($color1, $color2);
+}
+
+// --------------------------------------------
+// 3. Math Helpers
+// --------------------------------------------
+
+// Power function
+@function pow($number, $exponent) {
+    $value: 1;
+    @if $exponent > 0 {
+        @for $i from 1 through $exponent {
+            $value: $value * $number;
+        }
+    }
+    @return $value;
+}
+
+// Factorial
+@function factorial($number) {
+    $value: 1;
+    @if $number > 0 {
+        @for $i from 1 through $number {
+            $value: $value * $i;
+        }
+    }
+    @return $value;
+}
+
+// Clamp value between min and max
+@function clamp($value, $min, $max) {
+    @return math.min(math.max($value, $min), $max);
+}
+
+// Linear interpolation
+@function lerp($min, $max, $percentage) {
+    @return $min + ($max - $min) * $percentage;
+}
+
+// --------------------------------------------
+// 4. String Helpers
+// --------------------------------------------
+
+// Replace substring
+@function str-replace($string, $search, $replace: '') {
+    $index: string.index($string, $search);
+    @if $index {
+        @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+    }
+    @return $string;
+}
+
+// URL encode color
+@function url-encode-color($color) {
+    $string: inspect($color);
+    $string: str-replace($string, '#', '%23');
+    @return $string;
+}
+
+// --------------------------------------------
+// 5. List Helpers
+// --------------------------------------------
+
+// Get first item
+@function first($list) {
+    @return list.nth($list, 1);
+}
+
+// Get last item
+@function last($list) {
+    @return list.nth($list, list.length($list));
+}
+
+// Prepend item
+@function prepend($list, $value) {
+    @return list.join($value, $list);
+}
+
+// Append item
+@function append($list, $value) {
+    @return list.join($list, $value);
+}
+
+// Remove item at index
+@function remove-nth($list, $index) {
+    $result: null;
+    @if type-of($index) != number {
+        @warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+    } @else if $index == 0 {
+        @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+    } @else if abs($index) > length($list) {
+        @warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+    } @else {
+        $result: ();
+        $index: if($index < 0, length($list) + $index + 1, $index);
+        @for $i from 1 through length($list) {
+            @if $i != $index {
+                $result: append($result, nth($list, $i));
+            }
+        }
+    }
+    @return $result;
+}
+
+// --------------------------------------------
+// 6. Map Helpers
+// --------------------------------------------
+
+// Deep get
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map.get($map, $key);
+    }
+    @return $map;
+}
+
+// Deep merge
+@function map-deep-merge($parent-map, $child-map) {
+    $result: $parent-map;
+    @each $key, $value in $child-map {
+        @if (not map.has-key($result, $key)) or (type-of(map.get($result, $key)) != type-of($value)) or (not (type-of(map.get($result, $key)) == map and type-of($value) == map)) {
+            $result: map.merge($result, ($key: $value));
+        } @else {
+            $result: map.merge($result, ($key: map-deep-merge(map.get($result, $key), $value)));
+        }
+    }
+    @return $result;
+}
+
+// --------------------------------------------
+// 7. Z-Index Manager
+// --------------------------------------------
+
+@function z($layer) {
+    @if not map.has-key($z-layers, $layer) {
+        @warn "No z-index found in $z-layers map for `#{$layer}`. Property omitted.";
+    }
+    @return map.get($z-layers, $layer);
+}
+
+// --------------------------------------------
+// 8. Breakpoint Manager
+// --------------------------------------------
+
+@function breakpoint-next($name, $breakpoints: $breakpoints, $breakpoint-names: map.keys($breakpoints)) {
+    $n: index($breakpoint-names, $name);
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function breakpoint-min($name, $breakpoints: $breakpoints) {
+    $min: map.get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $breakpoints) {
+    $next: breakpoint-next($name, $breakpoints);
+    @return if($next, breakpoint-min($next, $breakpoints) - 0.02px, null);
+}
+
+// --------------------------------------------
+// 9. Spacing Calculator
+// --------------------------------------------
+
+@function spacing($multiplier) {
+    @return $multiplier * 0.25rem;
+}
+
+// --------------------------------------------
+// 10. Typography Calculator
+// --------------------------------------------
+
+@function fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        @return calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+    }
+}

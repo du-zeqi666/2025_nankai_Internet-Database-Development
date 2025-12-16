@@ -1,0 +1,544 @@
+// ============================================
+// 🎨 抗战纪念主题色彩系统 (Global Variables)
+// ============================================
+
+// --------------------------------------------
+// 1. Color System (色彩系统)
+// --------------------------------------------
+
+// 主色调 - 庄严红
+// 来源：国旗红、革命红、抗战胜利的荣光
+$primary-colors: (
+    'memorial-red': #C41E3A,       // 纪念红 - 主色
+    'memorial-red-light': #D94F65, // 浅纪念红
+    'memorial-red-lighter': #E57373, // 更浅纪念红
+    'memorial-red-dark': #8B0000,  // 深纪念红
+    'memorial-red-darker': #5D0000, // 更深纪念红
+    'golden-victory': #DAA520,     // 胜利金 - 强调色
+    'golden-light': #FFD700,       // 明金色
+    'golden-lighter': #FFE066,     // 更明金色
+    'golden-dark': #B8860B,        // 暗金色
+    'golden-darker': #8B6508,      // 更暗金色
+);
+
+// 辅助色调 - 历史感
+$secondary-colors: (
+    'ancient-bronze': #8B7355,     // 青铜色 - 历史感
+    'ancient-bronze-light': #A68B6A,
+    'ancient-bronze-dark': #6E5B42,
+    'ink-black': #1A1A1A,          // 墨黑 - 文字
+    'ink-black-light': #333333,
+    'parchment': #F5F0E6,          // 羊皮纸 - 背景
+    'parchment-light': #FAF6ED,
+    'parchment-dark': #EBE5D5,
+    'old-paper': #EDE6D8,          // 旧纸张
+    'seal-red': #C73222,           // 印章红
+    'wall-grey': #787878,          // 城墙灰
+    'history-sepia': #704214,      // 历史褐
+);
+
+// 功能色
+$functional-colors: (
+    'success': #2E7D32,            // 成功绿
+    'success-light': #4CAF50,
+    'success-dark': #1B5E20,
+    'warning': #ED6C02,            // 警告橙
+    'warning-light': #FF9800,
+    'warning-dark': #E65100,
+    'error': #D32F2F,              // 错误红
+    'error-light': #EF5350,
+    'error-dark': #C62828,
+    'info': #0288D1,               // 信息蓝
+    'info-light': #03A9F4,
+    'info-dark': #01579B,
+);
+
+// 中性色 - 用于文本和背景
+$neutral-colors: (
+    'white': #FFFFFF,
+    'gray-50': #FAFAFA,
+    'gray-100': #F5F5F5,
+    'gray-200': #EEEEEE,
+    'gray-300': #E0E0E0,
+    'gray-400': #BDBDBD,
+    'gray-500': #9E9E9E,
+    'gray-600': #757575,
+    'gray-700': #616161,
+    'gray-800': #424242,
+    'gray-900': #212121,
+    'black': #000000,
+);
+
+// 渐变色
+$gradients: (
+    // 主渐变 - 用于头部、按钮
+    'primary-gradient': linear-gradient(135deg, #C41E3A 0%, #8B0000 100%),
+    'primary-gradient-hover': linear-gradient(135deg, #D94F65 0%, #A50000 100%),
+    
+    // 金色渐变 - 用于强调、勋章
+    'golden-gradient': linear-gradient(135deg, #FFD700 0%, #B8860B 100%),
+    'golden-gradient-text': linear-gradient(to right, #B8860B, #FFD700, #B8860B),
+    
+    // 历史纸张纹理渐变
+    'paper-gradient': linear-gradient(180deg, #F5F0E6 0%, #EDE6D8 50%, #E5DDD0 100%),
+    
+    // 英雄卡片渐变
+    'hero-card-gradient': linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%),
+    'hero-card-overlay': linear-gradient(to bottom, rgba(196, 30, 58, 0.1), rgba(0, 0, 0, 0.9)),
+    
+    // 时间轴渐变
+    'timeline-gradient': linear-gradient(90deg, #C41E3A 0%, #DAA520 50%, #C41E3A 100%),
+    'timeline-line': linear-gradient(to bottom, transparent, #8B7355 10%, #8B7355 90%, transparent),
+    
+    // 氛围渐变
+    'dark-overlay': linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)),
+    'red-glow': radial-gradient(circle at center, rgba(196, 30, 58, 0.4) 0%, transparent 70%),
+);
+
+// 特殊效果色
+$special-effects: (
+    'shadow-light': rgba(0, 0, 0, 0.1),
+    'shadow-medium': rgba(0, 0, 0, 0.25),
+    'shadow-heavy': rgba(0, 0, 0, 0.5),
+    'overlay-dark': rgba(0, 0, 0, 0.7),
+    'overlay-red': rgba(196, 30, 58, 0.8),
+    'glow-gold': rgba(218, 165, 32, 0.5),
+    'glass-bg': rgba(255, 255, 255, 0.1),
+    'glass-border': rgba(255, 255, 255, 0.2),
+);
+
+// --------------------------------------------
+// 2. Typography System (排版系统)
+// --------------------------------------------
+
+// 字体家族定义
+$font-families: (
+    // 标题字体 - 庄重感
+    'heading': (
+        'SourceHanSerifCN',      // 思源宋体（首选）
+        'Noto Serif SC',
+        'SimSun',
+        'serif'
+    ),
+    
+    // 正文字体 - 易读性
+    'body': (
+        'SourceHanSansCN',       // 思源黑体（首选）
+        'Noto Sans SC',
+        'Microsoft YaHei',
+        'PingFang SC',
+        'sans-serif'
+    ),
+    
+    // 数字/日期字体
+    'mono': (
+        'DIN Condensed',
+        'Bebas Neue',
+        'Impact',
+        'monospace'
+    ),
+    
+    // 手写/题词字体
+    'calligraphy': (
+        'FZShuTi',               // 方正舒体
+        'STXingkai',             // 华文行楷
+        'cursive'
+    ),
+);
+
+// 字体大小系统 (基于 16px)
+$font-sizes: (
+    'display-1': 6rem,     // 96px - 超大标题
+    'display-2': 4.5rem,   // 72px - 大标题
+    'display-3': 3.5rem,   // 56px - 中标题
+    'display-4': 3rem,     // 48px
+    'h1': 2.5rem,          // 40px - 页面标题
+    'h2': 2rem,            // 32px - 章节标题
+    'h3': 1.75rem,         // 28px - 子标题
+    'h4': 1.5rem,          // 24px - 小标题
+    'h5': 1.25rem,         // 20px - 段落标题
+    'h6': 1.125rem,        // 18px - 次要标题
+    'body-lg': 1.125rem,   // 18px - 大正文
+    'body': 1rem,          // 16px - 正文
+    'body-sm': 0.875rem,   // 14px - 小正文
+    'caption': 0.75rem,    // 12px - 说明文字
+    'tiny': 0.625rem,      // 10px - 极小文字
+);
+
+// 行高系统
+$line-heights: (
+    'none': 1,
+    'tight': 1.25,         // 紧凑
+    'snug': 1.375,         // 稍紧
+    'normal': 1.5,         // 正常
+    'relaxed': 1.625,      // 宽松
+    'loose': 1.75,         // 很宽松
+    'extra-loose': 2,      // 特宽松
+);
+
+// 字重系统
+$font-weights: (
+    'thin': 100,
+    'extralight': 200,
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700,
+    'extrabold': 800,
+    'black': 900,
+);
+
+// 字间距系统
+$letter-spacings: (
+    'tighter': -0.05em,
+    'tight': -0.025em,
+    'normal': 0,
+    'wide': 0.025em,
+    'wider': 0.05em,
+    'widest': 0.1em,
+    'ultra-wide': 0.2em,   // 用于庄重标题
+);
+
+// --------------------------------------------
+// 3. Spacing System (间距系统)
+// --------------------------------------------
+
+$spacing: (
+    '0': 0,
+    'px': 1px,
+    '1': 0.25rem,    // 4px
+    '2': 0.5rem,     // 8px
+    '3': 0.75rem,    // 12px
+    '4': 1rem,       // 16px
+    '5': 1.25rem,    // 20px
+    '6': 1.5rem,     // 24px
+    '7': 1.75rem,    // 28px
+    '8': 2rem,       // 32px
+    '9': 2.25rem,    // 36px
+    '10': 2.5rem,    // 40px
+    '11': 2.75rem,   // 44px
+    '12': 3rem,      // 48px
+    '14': 3.5rem,    // 56px
+    '16': 4rem,      // 64px
+    '20': 5rem,      // 80px
+    '24': 6rem,      // 96px
+    '28': 7rem,      // 112px
+    '32': 8rem,      // 128px
+    '36': 9rem,      // 144px
+    '40': 10rem,     // 160px
+    '48': 12rem,     // 192px
+    '56': 14rem,     // 224px
+    '64': 16rem,     // 256px
+    '72': 18rem,     // 288px
+    '80': 20rem,     // 320px
+    '96': 24rem,     // 384px
+);
+
+// 组件间距语义化
+$component-spacing: (
+    'card-padding': 1.5rem,
+    'card-padding-lg': 2rem,
+    'card-padding-sm': 1rem,
+    'section-padding-y': 5rem,
+    'section-padding-y-sm': 3rem,
+    'section-padding-y-lg': 8rem,
+    'section-padding-x': 2rem,
+    'header-height': 80px,
+    'header-height-mobile': 60px,
+    'footer-height': 300px,
+    'sidebar-width': 280px,
+    'sidebar-width-collapsed': 60px,
+    'container-max-width': 1400px,
+    'content-max-width': 900px,
+    'modal-padding': 2rem,
+    'input-padding-y': 0.75rem,
+    'input-padding-x': 1rem,
+    'button-padding-y': 0.75rem,
+    'button-padding-x': 1.5rem,
+);
+
+// --------------------------------------------
+// 4. Layout & Breakpoints (布局与断点)
+// --------------------------------------------
+
+$breakpoints: (
+    'mobile': 576px,  // 移动端 (兼容旧代码)
+    'xs': 320px,      // 小型手机
+    'sm': 576px,      // 大型手机
+    'md': 768px,      // 平板竖屏
+    'lg': 992px,      // 平板横屏 / 小型桌面
+    'xl': 1200px,     // 桌面
+    'xxl': 1400px,    // 大型桌面
+    'ultra': 1920px,  // 超大屏幕
+    '4k': 2560px,     // 4K屏幕
+);
+
+$container-widths: (
+    'sm': 540px,
+    'md': 720px,
+    'lg': 960px,
+    'xl': 1140px,
+    'xxl': 1320px,
+);
+
+$grid-columns: 12;
+$grid-gutter-width: 1.5rem;
+
+// --------------------------------------------
+// 5. Z-Index System (层级系统)
+// --------------------------------------------
+
+$z-index: (
+    'negative': -1,
+    'base': 0,
+    'background': 1,
+    'content': 10,
+    'dropdown': 100,
+    'sticky': 200,
+    'fixed': 300,
+    'overlay': 400,
+    'modal-backdrop': 500,
+    'modal': 600,
+    'popover': 700,
+    'tooltip': 800,
+    'toast': 900,
+    'loading': 1000,
+    'cursor': 9999,
+);
+
+// --------------------------------------------
+// 6. Border & Radius (边框与圆角)
+// --------------------------------------------
+
+// 边框宽度
+$border-widths: (
+    '0': 0,
+    '1': 1px,
+    '2': 2px,
+    '3': 3px,
+    '4': 4px,
+    '5': 5px,
+    '8': 8px,
+    '10': 10px,
+);
+
+// 圆角系统
+$border-radius: (
+    'none': 0,
+    'xs': 0.125rem,    // 2px
+    'sm': 0.25rem,     // 4px
+    'md': 0.375rem,    // 6px
+    'lg': 0.5rem,      // 8px
+    'xl': 0.75rem,     // 12px
+    '2xl': 1rem,       // 16px
+    '3xl': 1.5rem,     // 24px
+    '4xl': 2rem,       // 32px
+    'full': 9999px,    // 圆形
+    'pill': 50rem,     // 胶囊形
+);
+
+// --------------------------------------------
+// 7. Shadow System (阴影系统)
+// --------------------------------------------
+
+$shadows: (
+    // 基础阴影
+    'none': none,
+    'xs': 0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    'sm': (0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)),
+    'md': (0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)),
+    'lg': (0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)),
+    'xl': (0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)),
+    '2xl': 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    '3xl': 0 35px 60px -15px rgba(0, 0, 0, 0.3),
+    
+    // 特殊阴影
+    'card': 0 4px 20px rgba(0, 0, 0, 0.08),
+    'card-hover': 0 8px 40px rgba(0, 0, 0, 0.12),
+    'button': 0 2px 8px rgba(196, 30, 58, 0.3),
+    'button-hover': 0 4px 16px rgba(196, 30, 58, 0.4),
+    'modal': 0 24px 48px rgba(0, 0, 0, 0.2),
+    'header': 0 2px 10px rgba(0, 0, 0, 0.1),
+    'dropdown': 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    
+    // 金色光晕
+    'glow-gold': 0 0 30px rgba(218, 165, 32, 0.3),
+    'glow-gold-strong': 0 0 60px rgba(218, 165, 32, 0.5),
+    
+    // 红色光晕
+    'glow-red': 0 0 30px rgba(196, 30, 58, 0.3),
+    'glow-red-strong': 0 0 60px rgba(196, 30, 58, 0.6),
+    
+    // 内阴影
+    'inset': inset 0 2px 4px 0 rgba(0, 0, 0, 0.05),
+    'inset-lg': inset 0 4px 8px 0 rgba(0, 0, 0, 0.1),
+    'inset-gold': inset 0 0 20px rgba(218, 165, 32, 0.2),
+);
+
+// --------------------------------------------
+// 8. Animation & Transition (动画与过渡)
+// --------------------------------------------
+
+$transitions: (
+    'fast': 150ms,
+    'base': 300ms,
+    'slow': 500ms,
+    'slower': 800ms,
+    'slowest': 1000ms,
+);
+
+$easings: (
+    'linear': linear,
+    'ease': ease,
+    'ease-in': ease-in,
+    'ease-out': ease-out,
+    'ease-in-out': ease-in-out,
+    'bounce': cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    'smooth': cubic-bezier(0.4, 0, 0.2, 1),
+    'memorial': cubic-bezier(0.22, 1, 0.36, 1),
+    'dramatic': cubic-bezier(0.16, 1, 0.3, 1),
+);
+
+// --------------------------------------------
+// 9. Opacity System (透明度系统)
+// --------------------------------------------
+
+$opacity: (
+    '0': 0,
+    '5': 0.05,
+    '10': 0.1,
+    '20': 0.2,
+    '25': 0.25,
+    '30': 0.3,
+    '40': 0.4,
+    '50': 0.5,
+    '60': 0.6,
+    '70': 0.7,
+    '75': 0.75,
+    '80': 0.8,
+    '90': 0.9,
+    '95': 0.95,
+    '100': 1,
+);
+
+// --------------------------------------------
+// 10. Path Variables (路径变量)
+// --------------------------------------------
+
+$paths: (
+    'images': '../assets/images',
+    'fonts': '../assets/fonts',
+    'icons': '../assets/icons',
+);
+
+// --------------------------------------------
+// 11. Component Specific Variables (组件特定变量)
+// --------------------------------------------
+
+// Buttons
+$btn-border-radius: map-get($border-radius, 'sm');
+$btn-padding-y: 0.75rem;
+$btn-padding-x: 1.5rem;
+$btn-font-weight: map-get($font-weights, 'semibold');
+$btn-transition: all map-get($transitions, 'base') map-get($easings, 'smooth');
+
+// Inputs
+$input-bg: map-get($neutral-colors, 'white');
+$input-border-color: map-get($neutral-colors, 'gray-300');
+$input-border-radius: map-get($border-radius, 'sm');
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-focus-border-color: map-get($primary-colors, 'memorial-red');
+$input-focus-box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+
+// Cards
+$card-bg: map-get($neutral-colors, 'white');
+$card-border-radius: map-get($border-radius, 'lg');
+$card-shadow: map-get($shadows, 'card');
+$card-hover-shadow: map-get($shadows, 'card-hover');
+$card-transition: transform map-get($transitions, 'base') map-get($easings, 'smooth'), box-shadow map-get($transitions, 'base') map-get($easings, 'smooth');
+
+// Navbar
+$navbar-height: 80px;
+$navbar-bg: rgba(26, 26, 26, 0.95);
+$navbar-color: map-get($neutral-colors, 'white');
+$navbar-link-hover-color: map-get($primary-colors, 'golden-victory');
+
+// Footer
+$footer-bg: map-get($secondary-colors, 'ink-black');
+$footer-color: map-get($neutral-colors, 'gray-400');
+$footer-heading-color: map-get($neutral-colors, 'white');
+
+// Modal
+$modal-backdrop-bg: rgba(0, 0, 0, 0.6);
+$modal-content-bg: map-get($neutral-colors, 'white');
+$modal-border-radius: map-get($border-radius, 'xl');
+$modal-header-padding: 1.5rem;
+$modal-body-padding: 1.5rem;
+$modal-footer-padding: 1rem 1.5rem;
+
+// Tooltip
+$tooltip-bg: rgba(0, 0, 0, 0.85);
+$tooltip-color: map-get($neutral-colors, 'white');
+$tooltip-border-radius: map-get($border-radius, 'sm');
+$tooltip-padding: 0.5rem 1rem;
+$tooltip-font-size: map-get($font-sizes, 'caption');
+
+// Toast
+$toast-bg: map-get($neutral-colors, 'white');
+$toast-color: map-get($secondary-colors, 'ink-black');
+$toast-border-radius: map-get($border-radius, 'md');
+$toast-shadow: map-get($shadows, 'lg');
+$toast-padding: 1rem 1.5rem;
+
+// --------------------------------------------
+// 12. Decorative Elements (装饰元素)
+// --------------------------------------------
+
+$decorative-borders: (
+    // 传统中式边框
+    'chinese-classic': (
+        border: 2px solid map-get($primary-colors, 'memorial-red'),
+        box-shadow: (inset 0 0 0 4px map-get($secondary-colors, 'parchment'), inset 0 0 0 6px map-get($primary-colors, 'memorial-red')),
+    ),
+    
+    // 金边框
+    'golden-frame': (
+        border: 3px solid map-get($primary-colors, 'golden-victory'),
+        box-shadow: 0 0 0 1px rgba(218, 165, 32, 0.3),
+    ),
+    
+    // 古籍边框
+    'ancient-scroll': (
+        border: 1px solid map-get($secondary-colors, 'ancient-bronze'),
+        background: linear-gradient(to bottom, map-get($secondary-colors, 'parchment'), map-get($secondary-colors, 'old-paper')),
+    ),
+);
+
+$textures: (
+    'rice-paper': url('../assets/images/textures/rice-paper.png'),
+    'kraft-paper': url('../assets/images/textures/kraft-paper.png'),
+    'marble': url('../assets/images/textures/marble.png'),
+    'bronze': url('../assets/images/textures/bronze.png'),
+    'silk-red': url('../assets/images/textures/silk-red.png'),
+    'noise': url('../assets/images/textures/noise.png'),
+    'dots': url('../assets/images/textures/dots.png'),
+);
+
+$patterns: (
+    'auspicious-cloud': url('../assets/images/patterns/cloud.svg'),
+    'meander': url('../assets/images/patterns/meander.svg'),
+    'ruyi': url('../assets/images/patterns/ruyi.svg'),
+    'lotus': url('../assets/images/patterns/lotus.svg'),
+    'dragon': url('../assets/images/patterns/dragon.svg'),
+    'waves': url('../assets/images/patterns/waves.svg'),
+    'geometric': url('../assets/images/patterns/geometric.svg'),
+);
+
+// End of Variables
+
+// --------------------------------------------
+// Layout Variables
+// --------------------------------------------
+$header-height: 80px;

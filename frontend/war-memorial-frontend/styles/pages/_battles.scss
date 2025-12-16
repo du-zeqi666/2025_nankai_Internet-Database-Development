@@ -1,0 +1,344 @@
+// ============================================
+// ⚔️ Battles Page Styles
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Battles Map Section
+// --------------------------------------------
+
+.battles-map-section {
+    height: 600px;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    
+    // Map container styles are in components/_battle-map.scss
+    // This section handles the page layout wrapper
+    
+    .map-overlay-info {
+        position: absolute;
+        top: map-get($spacing, '4');
+        left: map-get($spacing, '4');
+        background: rgba(255,255,255,0.9);
+        padding: map-get($spacing, '4');
+        border-radius: map-get($border-radius, 'md');
+        box-shadow: map-get($shadows, 'md');
+        max-width: 300px;
+        z-index: 10;
+        
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: map-get($spacing, '2');
+            color: map-get($secondary-colors, 'ink-black');
+        }
+        
+        p {
+            font-size: 0.9rem;
+            color: map-get($neutral-colors, 'gray-600');
+        }
+    }
+}
+
+// --------------------------------------------
+// 2. Timeline Navigation
+// --------------------------------------------
+
+.battles-timeline-nav {
+    background-color: map-get($secondary-colors, 'ink-black');
+    padding: map-get($spacing, '4') 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    // Hide scrollbar
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: map-get($neutral-colors, 'gray-600');
+        border-radius: 3px;
+    }
+    
+    .timeline-years {
+        display: flex;
+        justify-content: center;
+        gap: map-get($spacing, '8');
+        min-width: max-content;
+        padding: 0 map-get($spacing, '4');
+        
+        .year-item {
+            color: map-get($neutral-colors, 'gray-400');
+            font-family: map-get($font-families, 'heading');
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            padding-bottom: map-get($spacing, '2');
+            transition: all 0.3s ease;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 2px;
+                background-color: map-get($primary-colors, 'golden-victory');
+                transition: width 0.3s ease;
+            }
+            
+            &:hover {
+                color: #fff;
+            }
+            
+            &.active {
+                color: map-get($primary-colors, 'golden-victory');
+                font-size: 1.5rem;
+                
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 3. Battle List
+// --------------------------------------------
+
+.battles-list {
+    padding: map-get($spacing, '12') 0;
+    background-color: #f9f9f9;
+    
+    .battle-item {
+        background: #fff;
+        border-radius: map-get($border-radius, 'lg');
+        box-shadow: map-get($shadows, 'sm');
+        margin-bottom: map-get($spacing, '6');
+        overflow: hidden;
+        display: flex;
+        transition: all 0.3s ease;
+        
+        @include respond-below('md') {
+            flex-direction: column;
+        }
+        
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: map-get($shadows, 'md');
+        }
+        
+        .battle-thumb {
+            flex: 0 0 300px;
+            position: relative;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                min-height: 200px;
+            }
+            
+            .battle-date {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: map-get($primary-colors, 'memorial-red');
+                color: #fff;
+                padding: map-get($spacing, '2') map-get($spacing, '3');
+                font-size: 0.9rem;
+                font-weight: bold;
+                border-bottom-right-radius: map-get($border-radius, 'md');
+            }
+        }
+        
+        .battle-content {
+            flex: 1;
+            padding: map-get($spacing, '6');
+            
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: map-get($spacing, '2');
+                
+                a {
+                    color: map-get($secondary-colors, 'ink-black');
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: map-get($primary-colors, 'memorial-red');
+                    }
+                }
+            }
+            
+            .battle-meta {
+                display: flex;
+                gap: map-get($spacing, '4');
+                margin-bottom: map-get($spacing, '4');
+                font-size: 0.9rem;
+                color: map-get($neutral-colors, 'gray-600');
+                
+                span {
+                    display: flex;
+                    align-items: center;
+                    
+                    i {
+                        margin-right: 5px;
+                        color: map-get($primary-colors, 'golden-victory');
+                    }
+                }
+            }
+            
+            p {
+                color: map-get($neutral-colors, 'gray-700');
+                margin-bottom: map-get($spacing, '4');
+                line-height: 1.6;
+            }
+            
+            .btn-read-more {
+                color: map-get($primary-colors, 'memorial-red');
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 0.9rem;
+                display: inline-flex;
+                align-items: center;
+                
+                &::after {
+                    content: '→';
+                    margin-left: 5px;
+                    transition: transform 0.2s ease;
+                }
+                
+                &:hover::after {
+                    transform: translateX(3px);
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 4. Battle Detail Page
+// --------------------------------------------
+
+.battle-detail {
+    .battle-hero-header {
+        height: 400px;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            padding: map-get($spacing, '8') 0;
+            width: 100%;
+            
+            h1 {
+                font-size: 3rem;
+                margin-bottom: map-get($spacing, '2');
+                text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            }
+            
+            .battle-location {
+                font-size: 1.2rem;
+                opacity: 0.9;
+                
+                i {
+                    color: map-get($primary-colors, 'golden-victory');
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    
+    .battle-stats-bar {
+        background-color: map-get($secondary-colors, 'ink-black');
+        color: #fff;
+        padding: map-get($spacing, '4') 0;
+        
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            
+            .stat-item {
+                .label {
+                    display: block;
+                    font-size: 0.8rem;
+                    color: map-get($neutral-colors, 'gray-400');
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    margin-bottom: 5px;
+                }
+                
+                .value {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: map-get($primary-colors, 'golden-victory');
+                }
+            }
+        }
+    }
+    
+    .battle-content-body {
+        padding: map-get($spacing, '12') 0;
+        
+        .commanders-section {
+            margin-top: map-get($spacing, '8');
+            background-color: #f9f9f9;
+            padding: map-get($spacing, '6');
+            border-radius: map-get($border-radius, 'md');
+            
+            h3 {
+                margin-bottom: map-get($spacing, '4');
+                border-bottom: 2px solid #ddd;
+                padding-bottom: map-get($spacing, '2');
+            }
+            
+            .commander-list {
+                display: flex;
+                gap: map-get($spacing, '4');
+                flex-wrap: wrap;
+                
+                .commander {
+                    display: flex;
+                    align-items: center;
+                    gap: map-get($spacing, '3');
+                    background: #fff;
+                    padding: map-get($spacing, '2') map-get($spacing, '4');
+                    border-radius: map-get($border-radius, 'full');
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                    
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                    
+                    span {
+                        font-weight: bold;
+                        color: map-get($secondary-colors, 'ink-black');
+                    }
+                }
+            }
+        }
+    }
+}

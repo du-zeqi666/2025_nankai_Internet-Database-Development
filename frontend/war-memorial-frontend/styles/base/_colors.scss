@@ -1,0 +1,315 @@
+// ============================================
+// 🎨 Color System Utilities
+// ============================================
+
+@use 'variables' as *;
+
+// --------------------------------------------
+// 1. Background Colors
+// --------------------------------------------
+
+// Primary Colors
+.bg-memorial-red { background-color: map-get($primary-colors, 'memorial-red') !important; }
+.bg-memorial-red-light { background-color: map-get($primary-colors, 'memorial-red-light') !important; }
+.bg-memorial-red-lighter { background-color: map-get($primary-colors, 'memorial-red-lighter') !important; }
+.bg-memorial-red-dark { background-color: map-get($primary-colors, 'memorial-red-dark') !important; }
+.bg-memorial-red-darker { background-color: map-get($primary-colors, 'memorial-red-darker') !important; }
+
+.bg-golden-victory { background-color: map-get($primary-colors, 'golden-victory') !important; }
+.bg-golden-light { background-color: map-get($primary-colors, 'golden-light') !important; }
+.bg-golden-lighter { background-color: map-get($primary-colors, 'golden-lighter') !important; }
+.bg-golden-dark { background-color: map-get($primary-colors, 'golden-dark') !important; }
+.bg-golden-darker { background-color: map-get($primary-colors, 'golden-darker') !important; }
+
+// Secondary Colors
+.bg-ancient-bronze { background-color: map-get($secondary-colors, 'ancient-bronze') !important; }
+.bg-ancient-bronze-light { background-color: map-get($secondary-colors, 'ancient-bronze-light') !important; }
+.bg-ancient-bronze-dark { background-color: map-get($secondary-colors, 'ancient-bronze-dark') !important; }
+.bg-ink-black { background-color: map-get($secondary-colors, 'ink-black') !important; }
+.bg-ink-black-light { background-color: map-get($secondary-colors, 'ink-black-light') !important; }
+.bg-parchment { background-color: map-get($secondary-colors, 'parchment') !important; }
+.bg-parchment-light { background-color: map-get($secondary-colors, 'parchment-light') !important; }
+.bg-parchment-dark { background-color: map-get($secondary-colors, 'parchment-dark') !important; }
+.bg-old-paper { background-color: map-get($secondary-colors, 'old-paper') !important; }
+.bg-seal-red { background-color: map-get($secondary-colors, 'seal-red') !important; }
+.bg-wall-grey { background-color: map-get($secondary-colors, 'wall-grey') !important; }
+.bg-history-sepia { background-color: map-get($secondary-colors, 'history-sepia') !important; }
+
+// Neutral Colors
+.bg-white { background-color: map-get($neutral-colors, 'white') !important; }
+.bg-black { background-color: map-get($neutral-colors, 'black') !important; }
+.bg-gray-50 { background-color: map-get($neutral-colors, 'gray-50') !important; }
+.bg-gray-100 { background-color: map-get($neutral-colors, 'gray-100') !important; }
+.bg-gray-200 { background-color: map-get($neutral-colors, 'gray-200') !important; }
+.bg-gray-300 { background-color: map-get($neutral-colors, 'gray-300') !important; }
+.bg-gray-400 { background-color: map-get($neutral-colors, 'gray-400') !important; }
+.bg-gray-500 { background-color: map-get($neutral-colors, 'gray-500') !important; }
+.bg-gray-600 { background-color: map-get($neutral-colors, 'gray-600') !important; }
+.bg-gray-700 { background-color: map-get($neutral-colors, 'gray-700') !important; }
+.bg-gray-800 { background-color: map-get($neutral-colors, 'gray-800') !important; }
+.bg-gray-900 { background-color: map-get($neutral-colors, 'gray-900') !important; }
+
+// Functional Colors
+.bg-success { background-color: map-get($functional-colors, 'success') !important; }
+.bg-success-light { background-color: map-get($functional-colors, 'success-light') !important; }
+.bg-success-dark { background-color: map-get($functional-colors, 'success-dark') !important; }
+.bg-warning { background-color: map-get($functional-colors, 'warning') !important; }
+.bg-warning-light { background-color: map-get($functional-colors, 'warning-light') !important; }
+.bg-warning-dark { background-color: map-get($functional-colors, 'warning-dark') !important; }
+.bg-error { background-color: map-get($functional-colors, 'error') !important; }
+.bg-error-light { background-color: map-get($functional-colors, 'error-light') !important; }
+.bg-error-dark { background-color: map-get($functional-colors, 'error-dark') !important; }
+.bg-info { background-color: map-get($functional-colors, 'info') !important; }
+.bg-info-light { background-color: map-get($functional-colors, 'info-light') !important; }
+.bg-info-dark { background-color: map-get($functional-colors, 'info-dark') !important; }
+
+// Transparent
+.bg-transparent { background-color: transparent !important; }
+
+// --------------------------------------------
+// 2. Text Colors
+// --------------------------------------------
+
+// Primary Colors
+.text-memorial-red { color: map-get($primary-colors, 'memorial-red') !important; }
+.text-memorial-red-light { color: map-get($primary-colors, 'memorial-red-light') !important; }
+.text-memorial-red-dark { color: map-get($primary-colors, 'memorial-red-dark') !important; }
+
+.text-golden-victory { color: map-get($primary-colors, 'golden-victory') !important; }
+.text-golden-light { color: map-get($primary-colors, 'golden-light') !important; }
+.text-golden-dark { color: map-get($primary-colors, 'golden-dark') !important; }
+
+// Secondary Colors
+.text-ancient-bronze { color: map-get($secondary-colors, 'ancient-bronze') !important; }
+.text-ink-black { color: map-get($secondary-colors, 'ink-black') !important; }
+.text-parchment { color: map-get($secondary-colors, 'parchment') !important; }
+.text-old-paper { color: map-get($secondary-colors, 'old-paper') !important; }
+.text-seal-red { color: map-get($secondary-colors, 'seal-red') !important; }
+
+// Neutral Colors
+.text-white { color: map-get($neutral-colors, 'white') !important; }
+.text-black { color: map-get($neutral-colors, 'black') !important; }
+.text-gray-100 { color: map-get($neutral-colors, 'gray-100') !important; }
+.text-gray-200 { color: map-get($neutral-colors, 'gray-200') !important; }
+.text-gray-300 { color: map-get($neutral-colors, 'gray-300') !important; }
+.text-gray-400 { color: map-get($neutral-colors, 'gray-400') !important; }
+.text-gray-500 { color: map-get($neutral-colors, 'gray-500') !important; }
+.text-gray-600 { color: map-get($neutral-colors, 'gray-600') !important; }
+.text-gray-700 { color: map-get($neutral-colors, 'gray-700') !important; }
+.text-gray-800 { color: map-get($neutral-colors, 'gray-800') !important; }
+.text-gray-900 { color: map-get($neutral-colors, 'gray-900') !important; }
+
+// Functional Colors
+.text-success { color: map-get($functional-colors, 'success') !important; }
+.text-warning { color: map-get($functional-colors, 'warning') !important; }
+.text-error { color: map-get($functional-colors, 'error') !important; }
+.text-info { color: map-get($functional-colors, 'info') !important; }
+
+// --------------------------------------------
+// 3. Border Colors
+// --------------------------------------------
+
+.border-memorial-red { border-color: map-get($primary-colors, 'memorial-red') !important; }
+.border-golden-victory { border-color: map-get($primary-colors, 'golden-victory') !important; }
+.border-ancient-bronze { border-color: map-get($secondary-colors, 'ancient-bronze') !important; }
+.border-ink-black { border-color: map-get($secondary-colors, 'ink-black') !important; }
+
+.border-white { border-color: map-get($neutral-colors, 'white') !important; }
+.border-gray-100 { border-color: map-get($neutral-colors, 'gray-100') !important; }
+.border-gray-200 { border-color: map-get($neutral-colors, 'gray-200') !important; }
+.border-gray-300 { border-color: map-get($neutral-colors, 'gray-300') !important; }
+.border-gray-400 { border-color: map-get($neutral-colors, 'gray-400') !important; }
+.border-gray-500 { border-color: map-get($neutral-colors, 'gray-500') !important; }
+.border-gray-600 { border-color: map-get($neutral-colors, 'gray-600') !important; }
+.border-gray-700 { border-color: map-get($neutral-colors, 'gray-700') !important; }
+.border-gray-800 { border-color: map-get($neutral-colors, 'gray-800') !important; }
+
+.border-transparent { border-color: transparent !important; }
+
+// --------------------------------------------
+// 4. Hover States (Background)
+// --------------------------------------------
+
+.hover-bg-memorial-red:hover { background-color: map-get($primary-colors, 'memorial-red') !important; }
+.hover-bg-memorial-red-dark:hover { background-color: map-get($primary-colors, 'memorial-red-dark') !important; }
+.hover-bg-golden-victory:hover { background-color: map-get($primary-colors, 'golden-victory') !important; }
+.hover-bg-golden-dark:hover { background-color: map-get($primary-colors, 'golden-dark') !important; }
+
+.hover-bg-gray-100:hover { background-color: map-get($neutral-colors, 'gray-100') !important; }
+.hover-bg-gray-200:hover { background-color: map-get($neutral-colors, 'gray-200') !important; }
+.hover-bg-gray-800:hover { background-color: map-get($neutral-colors, 'gray-800') !important; }
+
+// --------------------------------------------
+// 5. Hover States (Text)
+// --------------------------------------------
+
+.hover-text-memorial-red:hover { color: map-get($primary-colors, 'memorial-red') !important; }
+.hover-text-golden-victory:hover { color: map-get($primary-colors, 'golden-victory') !important; }
+.hover-text-white:hover { color: map-get($neutral-colors, 'white') !important; }
+.hover-text-black:hover { color: map-get($neutral-colors, 'black') !important; }
+
+// --------------------------------------------
+// 6. SVG Fill & Stroke
+// --------------------------------------------
+
+.fill-memorial-red { fill: map-get($primary-colors, 'memorial-red') !important; }
+.fill-golden-victory { fill: map-get($primary-colors, 'golden-victory') !important; }
+.fill-white { fill: map-get($neutral-colors, 'white') !important; }
+.fill-current { fill: currentColor !important; }
+
+.stroke-memorial-red { stroke: map-get($primary-colors, 'memorial-red') !important; }
+.stroke-golden-victory { stroke: map-get($primary-colors, 'golden-victory') !important; }
+.stroke-white { stroke: map-get($neutral-colors, 'white') !important; }
+.stroke-current { stroke: currentColor !important; }
+
+// --------------------------------------------
+// 7. Opacity Variants (Primary)
+// --------------------------------------------
+
+@each $name, $color in $primary-colors {
+    .bg-#{$name}-10 { background-color: rgba($color, 0.1) !important; }
+    .bg-#{$name}-20 { background-color: rgba($color, 0.2) !important; }
+    .bg-#{$name}-30 { background-color: rgba($color, 0.3) !important; }
+    .bg-#{$name}-40 { background-color: rgba($color, 0.4) !important; }
+    .bg-#{$name}-50 { background-color: rgba($color, 0.5) !important; }
+    .bg-#{$name}-60 { background-color: rgba($color, 0.6) !important; }
+    .bg-#{$name}-70 { background-color: rgba($color, 0.7) !important; }
+    .bg-#{$name}-80 { background-color: rgba($color, 0.8) !important; }
+    .bg-#{$name}-90 { background-color: rgba($color, 0.9) !important; }
+    
+    .text-#{$name}-10 { color: rgba($color, 0.1) !important; }
+    .text-#{$name}-20 { color: rgba($color, 0.2) !important; }
+    .text-#{$name}-30 { color: rgba($color, 0.3) !important; }
+    .text-#{$name}-40 { color: rgba($color, 0.4) !important; }
+    .text-#{$name}-50 { color: rgba($color, 0.5) !important; }
+    .text-#{$name}-60 { color: rgba($color, 0.6) !important; }
+    .text-#{$name}-70 { color: rgba($color, 0.7) !important; }
+    .text-#{$name}-80 { color: rgba($color, 0.8) !important; }
+    .text-#{$name}-90 { color: rgba($color, 0.9) !important; }
+    
+    .border-#{$name}-10 { border-color: rgba($color, 0.1) !important; }
+    .border-#{$name}-20 { border-color: rgba($color, 0.2) !important; }
+    .border-#{$name}-30 { border-color: rgba($color, 0.3) !important; }
+    .border-#{$name}-40 { border-color: rgba($color, 0.4) !important; }
+    .border-#{$name}-50 { border-color: rgba($color, 0.5) !important; }
+    .border-#{$name}-60 { border-color: rgba($color, 0.6) !important; }
+    .border-#{$name}-70 { border-color: rgba($color, 0.7) !important; }
+    .border-#{$name}-80 { border-color: rgba($color, 0.8) !important; }
+    .border-#{$name}-90 { border-color: rgba($color, 0.9) !important; }
+}
+
+// --------------------------------------------
+// 8. Opacity Variants (Secondary)
+// --------------------------------------------
+
+@each $name, $color in $secondary-colors {
+    .bg-#{$name}-10 { background-color: rgba($color, 0.1) !important; }
+    .bg-#{$name}-20 { background-color: rgba($color, 0.2) !important; }
+    .bg-#{$name}-30 { background-color: rgba($color, 0.3) !important; }
+    .bg-#{$name}-40 { background-color: rgba($color, 0.4) !important; }
+    .bg-#{$name}-50 { background-color: rgba($color, 0.5) !important; }
+    .bg-#{$name}-60 { background-color: rgba($color, 0.6) !important; }
+    .bg-#{$name}-70 { background-color: rgba($color, 0.7) !important; }
+    .bg-#{$name}-80 { background-color: rgba($color, 0.8) !important; }
+    .bg-#{$name}-90 { background-color: rgba($color, 0.9) !important; }
+    
+    .text-#{$name}-10 { color: rgba($color, 0.1) !important; }
+    .text-#{$name}-50 { color: rgba($color, 0.5) !important; }
+    .text-#{$name}-90 { color: rgba($color, 0.9) !important; }
+    
+    .border-#{$name}-10 { border-color: rgba($color, 0.1) !important; }
+    .border-#{$name}-50 { border-color: rgba($color, 0.5) !important; }
+    .border-#{$name}-90 { border-color: rgba($color, 0.9) !important; }
+}
+
+// --------------------------------------------
+// 9. Opacity Variants (Neutral)
+// --------------------------------------------
+
+@each $name, $color in $neutral-colors {
+    .bg-#{$name}-10 { background-color: rgba($color, 0.1) !important; }
+    .bg-#{$name}-20 { background-color: rgba($color, 0.2) !important; }
+    .bg-#{$name}-30 { background-color: rgba($color, 0.3) !important; }
+    .bg-#{$name}-40 { background-color: rgba($color, 0.4) !important; }
+    .bg-#{$name}-50 { background-color: rgba($color, 0.5) !important; }
+    .bg-#{$name}-60 { background-color: rgba($color, 0.6) !important; }
+    .bg-#{$name}-70 { background-color: rgba($color, 0.7) !important; }
+    .bg-#{$name}-80 { background-color: rgba($color, 0.8) !important; }
+    .bg-#{$name}-90 { background-color: rgba($color, 0.9) !important; }
+    
+    .text-#{$name}-10 { color: rgba($color, 0.1) !important; }
+    .text-#{$name}-50 { color: rgba($color, 0.5) !important; }
+    .text-#{$name}-90 { color: rgba($color, 0.9) !important; }
+    
+    .border-#{$name}-10 { border-color: rgba($color, 0.1) !important; }
+    .border-#{$name}-50 { border-color: rgba($color, 0.5) !important; }
+    .border-#{$name}-90 { border-color: rgba($color, 0.9) !important; }
+}
+
+// --------------------------------------------
+// 10. Opacity Variants (Functional)
+// --------------------------------------------
+
+@each $name, $color in $functional-colors {
+    .bg-#{$name}-10 { background-color: rgba($color, 0.1) !important; }
+    .bg-#{$name}-20 { background-color: rgba($color, 0.2) !important; }
+    .bg-#{$name}-50 { background-color: rgba($color, 0.5) !important; }
+    
+    .text-#{$name}-10 { color: rgba($color, 0.1) !important; }
+    .text-#{$name}-50 { color: rgba($color, 0.5) !important; }
+    
+    .border-#{$name}-10 { border-color: rgba($color, 0.1) !important; }
+    .border-#{$name}-50 { border-color: rgba($color, 0.5) !important; }
+}
+
+// --------------------------------------------
+// 11. Gradients
+// --------------------------------------------
+
+.bg-gradient-primary { background: map-get($gradients, 'primary-gradient') !important; }
+.bg-gradient-golden { background: map-get($gradients, 'golden-gradient') !important; }
+.bg-gradient-paper { background: map-get($gradients, 'paper-gradient') !important; }
+.bg-gradient-hero { background: map-get($gradients, 'hero-card-gradient') !important; }
+.bg-gradient-timeline { background: map-get($gradients, 'timeline-gradient') !important; }
+
+.text-gradient-golden {
+    background: map-get($gradients, 'golden-gradient');
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-primary {
+    background: map-get($gradients, 'primary-gradient');
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// --------------------------------------------
+// 12. Focus States
+// --------------------------------------------
+
+.focus-ring-memorial-red:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(map-get($primary-colors, 'memorial-red'), 0.3) !important;
+}
+
+.focus-ring-golden-victory:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(map-get($primary-colors, 'golden-victory'), 0.3) !important;
+}
+
+// --------------------------------------------
+// 13. Active States
+// --------------------------------------------
+
+.active-bg-memorial-red:active { background-color: map-get($primary-colors, 'memorial-red-dark') !important; }
+.active-bg-golden-victory:active { background-color: map-get($primary-colors, 'golden-dark') !important; }
+
+// --------------------------------------------
+// 14. Visited States
+// --------------------------------------------
+
+.visited-text-memorial-red:visited { color: map-get($primary-colors, 'memorial-red-dark') !important; }
+.visited-text-gray-600:visited { color: map-get($neutral-colors, 'gray-800') !important; }

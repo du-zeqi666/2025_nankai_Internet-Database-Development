@@ -1,0 +1,119 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+// Timeline Page Styles
+
+.page-timeline {
+  .timeline-container {
+    position: relative;
+    padding: map-get($spacing, '8') 0;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background-color: map-get($neutral-colors, 'gray-300');
+    transform: translateX(-50%);
+  }
+
+  .timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 0;
+    background-color: map-get($primary-colors, 'memorial-red');
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: map-get($spacing, '8');
+    width: 50%;
+    padding: 0 map-get($spacing, '8');
+    
+    &:nth-child(odd) {
+      left: 0;
+      text-align: right;
+      
+      .timeline-content {
+        align-items: flex-end;
+      }
+      
+      .timeline-date {
+        right: -60px;
+      }
+    }
+
+    &:nth-child(even) {
+      left: 50%;
+      text-align: left;
+      
+      .timeline-content {
+        align-items: flex-start;
+      }
+      
+      .timeline-date {
+        left: -60px;
+      }
+    }
+  }
+
+  .timeline-marker {
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: map-get($primary-colors, 'memorial-red');
+    border: 4px solid white;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 0 4px rgba(map-get($primary-colors, 'memorial-red'), 0.2);
+    
+    .timeline-item:nth-child(odd) & {
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even) & {
+      left: -10px;
+    }
+  }
+
+  .timeline-date {
+    position: absolute;
+    top: 18px;
+    font-family: map-get($font-families, 'heading');
+    font-size: map-get($font-sizes, 'xl');
+    font-weight: bold;
+    color: map-get($primary-colors, 'memorial-red');
+    white-space: nowrap;
+  }
+
+  .timeline-content {
+    background: white;
+    padding: map-get($spacing, '6');
+    border-radius: 4px;
+    box-shadow: map-get($shadows, 'md');
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: map-get($shadows, 'lg');
+    }
+
+    img {
+      margin-top: map-get($spacing, '4');
+      border-radius: 2px;
+      max-height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}

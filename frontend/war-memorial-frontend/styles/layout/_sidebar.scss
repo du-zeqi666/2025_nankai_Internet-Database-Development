@@ -1,0 +1,186 @@
+// ============================================
+// 📑 Sidebar Layout
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Sidebar Container
+// --------------------------------------------
+
+.sidebar {
+    padding-left: map-get($spacing, '4');
+    
+    @include respond-below('md') {
+        padding-left: 0;
+        margin-top: map-get($spacing, '8');
+        border-top: 1px solid #eee;
+        padding-top: map-get($spacing, '8');
+    }
+}
+
+// --------------------------------------------
+// 2. Sidebar Widget
+// --------------------------------------------
+
+.sidebar-widget {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: map-get($border-radius, 'md');
+    padding: map-get($spacing, '5');
+    margin-bottom: map-get($spacing, '6');
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    
+    // Widget Title
+    .widget-title {
+        font-family: map-get($font-families, 'heading');
+        font-size: 1.1rem;
+        color: map-get($secondary-colors, 'ink-black');
+        margin-bottom: map-get($spacing, '4');
+        padding-bottom: map-get($spacing, '2');
+        border-bottom: 2px solid map-get($primary-colors, 'memorial-red');
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        i {
+            color: map-get($neutral-colors, 'gray-400');
+            font-size: 0.9rem;
+        }
+    }
+    
+    // Widget Content
+    .widget-content {
+        font-size: 0.95rem;
+        color: map-get($neutral-colors, 'gray-700');
+    }
+}
+
+// --------------------------------------------
+// 3. Categories List Widget
+// --------------------------------------------
+
+.widget-categories {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+            border-bottom: 1px dashed #eee;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
+            a {
+                display: flex;
+                justify-content: space-between;
+                padding: map-get($spacing, '2') 0;
+                color: map-get($neutral-colors, 'gray-700');
+                text-decoration: none;
+                transition: all 0.2s ease;
+                
+                .count {
+                    background-color: map-get($neutral-colors, 'gray-200');
+                    color: map-get($neutral-colors, 'gray-600');
+                    font-size: 0.75rem;
+                    padding: 2px 8px;
+                    border-radius: 10px;
+                    transition: all 0.2s ease;
+                }
+                
+                &:hover {
+                    color: map-get($primary-colors, 'memorial-red');
+                    padding-left: 5px;
+                    
+                    .count {
+                        background-color: map-get($primary-colors, 'memorial-red');
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 4. Recent Posts Widget
+// --------------------------------------------
+
+.widget-recent-posts {
+    .post-item {
+        display: flex;
+        gap: map-get($spacing, '3');
+        margin-bottom: map-get($spacing, '4');
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+        
+        .post-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: map-get($border-radius, 'sm');
+            overflow: hidden;
+            flex-shrink: 0;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        
+        .post-info {
+            h5 {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+                line-height: 1.3;
+                
+                a {
+                    color: map-get($secondary-colors, 'ink-black');
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: map-get($primary-colors, 'memorial-red');
+                    }
+                }
+            }
+            
+            .date {
+                font-size: 0.75rem;
+                color: map-get($neutral-colors, 'gray-500');
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 5. Tags Cloud Widget
+// --------------------------------------------
+
+.widget-tags {
+    .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: map-get($spacing, '2');
+        
+        a {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: map-get($neutral-colors, 'gray-100');
+            color: map-get($neutral-colors, 'gray-600');
+            font-size: 0.8rem;
+            border-radius: map-get($border-radius, 'sm');
+            text-decoration: none;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background-color: map-get($primary-colors, 'memorial-red');
+                color: #fff;
+            }
+        }
+    }
+}

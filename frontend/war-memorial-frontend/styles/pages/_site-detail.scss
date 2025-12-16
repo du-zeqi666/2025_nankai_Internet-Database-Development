@@ -1,0 +1,271 @@
+// ============================================
+// 🏛️ Memorial Site Detail Page Styles
+// ============================================
+
+.site-detail-page {
+    padding-top: $header-height;
+    background-color: map-get($neutral-colors, 'gray-50');
+    min-height: 100vh;
+
+    // 1. Site Header (Full Width Image)
+    .site-header {
+        height: 60vh;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 4rem 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            
+            .container {
+                position: relative;
+            }
+            
+            h1 {
+                font-family: map-get($font-families, 'heading');
+                font-size: map-get($font-sizes, 'display-2');
+                margin-bottom: 1rem;
+                
+                @include respond-below('md') {
+                    font-size: map-get($font-sizes, 'h1');
+                }
+            }
+            
+            .location {
+                font-size: map-get($font-sizes, 'h4');
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: map-get($neutral-colors, 'gray-300');
+                
+                i {
+                    color: map-get($primary-colors, 'memorial-red');
+                }
+            }
+        }
+    }
+
+    // 2. Quick Info Bar
+    .site-quick-info {
+        background: white;
+        box-shadow: map-get($shadows, 'sm');
+        padding: 1.5rem 0;
+        position: sticky;
+        top: $header-height;
+        z-index: 90;
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            @include respond-below('md') {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+        
+        .info-items {
+            display: flex;
+            gap: 2rem;
+            
+            @include respond-below('sm') {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: map-get($neutral-colors, 'gray-700');
+                
+                i {
+                    color: map-get($primary-colors, 'memorial-red');
+                }
+                
+                &.status-open {
+                    color: map-get($functional-colors, 'success');
+                }
+            }
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            
+            .btn {
+                padding: 0.5rem 1.5rem;
+                border-radius: 2rem;
+                font-size: map-get($font-sizes, 'body-sm');
+                
+                &--primary {
+                    background: map-get($primary-colors, 'memorial-red');
+                    color: white;
+                    
+                    &:hover {
+                        background: map-get($primary-colors, 'memorial-red-dark');
+                    }
+                }
+                
+                &--outline {
+                    border: 1px solid map-get($neutral-colors, 'gray-300');
+                    color: map-get($neutral-colors, 'gray-700');
+                    
+                    &:hover {
+                        border-color: map-get($primary-colors, 'memorial-red');
+                        color: map-get($primary-colors, 'memorial-red');
+                    }
+                }
+            }
+        }
+    }
+
+    // 3. Main Content
+    .site-content {
+        padding: 4rem 0;
+        
+        .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            
+            @include respond-below('lg') {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        // Left Column
+        .content-main {
+            section {
+                margin-bottom: 4rem;
+                
+                h2 {
+                    font-family: map-get($font-families, 'heading');
+                    font-size: map-get($font-sizes, 'h2');
+                    margin-bottom: 1.5rem;
+                    color: map-get($neutral-colors, 'gray-900');
+                    
+                    &::after {
+                        content: '';
+                        display: block;
+                        width: 60px;
+                        height: 3px;
+                        background: map-get($primary-colors, 'memorial-red');
+                        margin-top: 0.5rem;
+                    }
+                }
+                
+                p {
+                    line-height: 1.8;
+                    color: map-get($neutral-colors, 'gray-700');
+                    margin-bottom: 1rem;
+                }
+            }
+            
+            .exhibitions-list {
+                display: grid;
+                gap: 2rem;
+                
+                .exhibition-card {
+                    display: flex;
+                    background: white;
+                    border-radius: map-get($border-radius, 'md');
+                    overflow: hidden;
+                    box-shadow: map-get($shadows, 'sm');
+                    transition: transform 0.3s ease;
+                    
+                    &:hover {
+                        transform: translateY(-5px);
+                        box-shadow: map-get($shadows, 'md');
+                    }
+                    
+                    @include respond-below('sm') {
+                        flex-direction: column;
+                    }
+                    
+                    img {
+                        width: 200px;
+                        object-fit: cover;
+                        
+                        @include respond-below('sm') {
+                            width: 100%;
+                            height: 200px;
+                        }
+                    }
+                    
+                    .info {
+                        padding: 1.5rem;
+                        
+                        h3 {
+                            font-size: map-get($font-sizes, 'h4');
+                            margin-bottom: 0.5rem;
+                        }
+                        
+                        p {
+                            font-size: map-get($font-sizes, 'body-sm');
+                            color: map-get($neutral-colors, 'gray-600');
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Right Column
+        .content-sidebar {
+            .info-card {
+                background: white;
+                padding: 2rem;
+                border-radius: map-get($border-radius, 'lg');
+                box-shadow: map-get($shadows, 'sm');
+                margin-bottom: 2rem;
+                
+                h3 {
+                    font-size: map-get($font-sizes, 'h4');
+                    margin-bottom: 1.5rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 1px solid map-get($neutral-colors, 'gray-200');
+                }
+                
+                .info-row {
+                    margin-bottom: 1.5rem;
+                    
+                    label {
+                        display: block;
+                        font-size: map-get($font-sizes, 'caption');
+                        color: map-get($neutral-colors, 'gray-500');
+                        margin-bottom: 0.25rem;
+                    }
+                    
+                    div {
+                        font-size: map-get($font-sizes, 'body');
+                        color: map-get($neutral-colors, 'gray-800');
+                    }
+                }
+                
+                .map-preview {
+                    height: 200px;
+                    background: map-get($neutral-colors, 'gray-200');
+                    border-radius: map-get($border-radius, 'md');
+                    margin-top: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: map-get($neutral-colors, 'gray-500');
+                }
+            }
+        }
+    }
+}

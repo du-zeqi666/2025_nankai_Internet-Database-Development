@@ -1,0 +1,354 @@
+// ============================================
+// 🃏 Card Component System
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Base Card Styles
+// --------------------------------------------
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: map-get($neutral-colors, 'white');
+    background-clip: border-box;
+    border: 1px solid map-get($neutral-colors, 'gray-200');
+    border-radius: map-get($border-radius, 'md');
+    @include shadow('sm');
+    @include transition(all, 0.3s, ease);
+    overflow: hidden;
+
+    @include hover {
+        @include shadow('md');
+        transform: translateY(-2px);
+    }
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: map-get($spacing, '5');
+}
+
+.card-title {
+    margin-bottom: map-get($spacing, '3');
+    font-family: map-get($font-families, 'heading');
+    font-size: 1.25rem;
+    font-weight: map-get($font-weights, 'bold');
+    color: map-get($secondary-colors, 'ink-black');
+}
+
+.card-subtitle {
+    margin-top: -(map-get($spacing, '2'));
+    margin-bottom: map-get($spacing, '3');
+    font-size: 0.875rem;
+    color: map-get($neutral-colors, 'gray-600');
+}
+
+.card-text {
+    margin-bottom: 0;
+    color: map-get($neutral-colors, 'gray-700');
+    line-height: map-get($line-heights, 'relaxed');
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.card-link {
+    @include hover {
+        text-decoration: none;
+    }
+
+    + .card-link {
+        margin-left: map-get($spacing, '4');
+    }
+}
+
+// --------------------------------------------
+// 2. Card Header & Footer
+// --------------------------------------------
+
+.card-header {
+    padding: map-get($spacing, '4') map-get($spacing, '5');
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid map-get($neutral-colors, 'gray-200');
+    font-weight: map-get($font-weights, 'bold');
+    color: map-get($secondary-colors, 'ink-black');
+
+    &:first-child {
+        border-radius: calc(#{map-get($border-radius, 'md')} - 1px) calc(#{map-get($border-radius, 'md')} - 1px) 0 0;
+    }
+}
+
+.card-footer {
+    padding: map-get($spacing, '4') map-get($spacing, '5');
+    background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid map-get($neutral-colors, 'gray-200');
+    font-size: 0.875rem;
+    color: map-get($neutral-colors, 'gray-600');
+
+    &:last-child {
+        border-radius: 0 0 calc(#{map-get($border-radius, 'md')} - 1px) calc(#{map-get($border-radius, 'md')} - 1px);
+    }
+}
+
+// --------------------------------------------
+// 3. Card Images
+// --------------------------------------------
+
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(#{map-get($border-radius, 'md')} - 1px);
+    border-top-right-radius: calc(#{map-get($border-radius, 'md')} - 1px);
+    object-fit: cover;
+    height: 200px; // Default height
+}
+
+.card-img-bottom {
+    width: 100%;
+    border-bottom-right-radius: calc(#{map-get($border-radius, 'md')} - 1px);
+    border-bottom-left-radius: calc(#{map-get($border-radius, 'md')} - 1px);
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: map-get($spacing, '5');
+    border-radius: calc(#{map-get($border-radius, 'md')} - 1px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+    color: map-get($neutral-colors, 'white');
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .card-title, .card-text {
+        color: map-get($neutral-colors, 'white');
+        text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+}
+
+// --------------------------------------------
+// 4. Memorial Card (Special Variant)
+// --------------------------------------------
+
+.card-memorial {
+    border: none;
+    background-color: map-get($secondary-colors, 'parchment');
+    border-radius: map-get($border-radius, 'lg');
+    @include shadow('md');
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        border: 1px solid rgba(map-get($primary-colors, 'golden-victory'), 0.3);
+        border-radius: map-get($border-radius, 'md');
+        pointer-events: none;
+    }
+
+    .card-img-top {
+        height: 250px;
+        filter: sepia(0.3) contrast(1.1);
+        transition: filter 0.3s ease;
+    }
+
+    @include hover {
+        .card-img-top {
+            filter: sepia(0) contrast(1);
+        }
+        
+        transform: translateY(-5px);
+        @include shadow('lg');
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-title {
+        font-family: map-get($font-families, 'heading');
+        color: map-get($primary-colors, 'memorial-red-dark');
+        margin-bottom: map-get($spacing, '2');
+    }
+
+    .memorial-date {
+        display: block;
+        font-size: 0.875rem;
+        color: map-get($secondary-colors, 'ancient-bronze');
+        margin-bottom: map-get($spacing, '3');
+        font-style: italic;
+    }
+}
+
+// --------------------------------------------
+// 5. News Card (Horizontal Layout)
+// --------------------------------------------
+
+.card-news {
+    flex-direction: row;
+    border: none;
+    background: transparent;
+    margin-bottom: map-get($spacing, '6');
+    
+    @include respond-to-down('md') {
+        flex-direction: column;
+    }
+
+    .card-img-wrapper {
+        flex: 0 0 35%;
+        position: relative;
+        overflow: hidden;
+        border-radius: map-get($border-radius, 'md');
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+    }
+
+    .card-body {
+        padding: 0 0 0 map-get($spacing, '5');
+        
+        @include respond-to-down('md') {
+            padding: map-get($spacing, '4') 0 0 0;
+        }
+    }
+
+    @include hover {
+        transform: none;
+        box-shadow: none;
+        
+        .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+        
+        .card-title {
+            color: map-get($primary-colors, 'memorial-red');
+        }
+    }
+}
+
+// --------------------------------------------
+// 6. Profile Card (For Heroes/Veterans)
+// --------------------------------------------
+
+.card-profile {
+    text-align: center;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto map-get($spacing, '4');
+        border: 4px solid map-get($neutral-colors, 'white');
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        object-fit: cover;
+    }
+
+    .card-title {
+        margin-bottom: map-get($spacing, '1');
+    }
+
+    .card-subtitle {
+        color: map-get($primary-colors, 'memorial-red');
+        font-weight: map-get($font-weights, 'bold');
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+    }
+}
+
+// --------------------------------------------
+// 7. Card Groups & Decks
+// --------------------------------------------
+
+.card-group {
+    display: flex;
+    flex-flow: row wrap;
+
+    > .card {
+        flex: 1 0 0%;
+        margin-bottom: 0;
+
+        + .card {
+            margin-left: 0;
+            border-left: 0;
+        }
+
+        &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+.card-deck {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    .card {
+        flex: 1 0 0%;
+        margin-right: 15px;
+        margin-left: 15px;
+        margin-bottom: 0;
+    }
+}
+
+.card-columns {
+    column-count: 3;
+    column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+
+    .card {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 1.25rem;
+    }
+
+    @include respond-to-down('lg') {
+        column-count: 2;
+    }
+    
+    @include respond-to-down('sm') {
+        column-count: 1;
+    }
+}
+
+// --------------------------------------------
+// 8. Interactive States
+// --------------------------------------------
+
+.card-clickable {
+    cursor: pointer;
+    
+    &::after {
+        content: '';
+        @include cover-parent;
+        z-index: 1;
+    }
+}

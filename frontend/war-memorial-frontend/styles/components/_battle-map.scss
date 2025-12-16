@@ -1,0 +1,291 @@
+// ============================================
+// 🗺️ Battle Map Component
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Map Container
+// --------------------------------------------
+
+.battle-map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-color: #e8e0d5; // Map background color
+    // background-image: url('../assets/images/textures/paper-texture.png');
+    border: 1px solid #d4c5b0;
+    border-radius: map-get($border-radius, 'lg');
+    overflow: hidden;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+    
+    @include respond-below('md') {
+        height: 400px;
+    }
+    
+    // Grid lines overlay
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(#d4c5b0 1px, transparent 1px),
+            linear-gradient(90deg, #d4c5b0 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    
+    // Compass Rose
+    .compass-rose {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        // background-image: url('../assets/images/icons/compass.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    
+    // Map Legend
+    .map-legend {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: map-get($spacing, '3');
+        border-radius: map-get($border-radius, 'md');
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border: 1px solid #ccc;
+        z-index: 10;
+        
+        h5 {
+            font-size: 0.9rem;
+            margin-bottom: map-get($spacing, '2');
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            
+            li {
+                display: flex;
+                align-items: center;
+                font-size: 0.8rem;
+                margin-bottom: 5px;
+                
+                .symbol {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 8px;
+                    border-radius: 50%;
+                    
+                    &.cn-army { background: map-get($primary-colors, 'memorial-red'); }
+                    &.jp-army { background: #333; }
+                    &.battle-site { 
+                        background: transparent;
+                        border: 2px solid #d32f2f;
+                        position: relative;
+                        &::after {
+                            content: '⚔️';
+                            font-size: 10px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// --------------------------------------------
+// 2. Map Markers
+// --------------------------------------------
+
+.map-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 5;
+    transition: z-index 0s linear 0.3s; // Delay z-index change
+    
+    &:hover {
+        z-index: 100;
+        transition: z-index 0s;
+        
+        .marker-dot {
+            transform: scale(1.2);
+        }
+        
+        .marker-pulse {
+            animation: none;
+            opacity: 0.5;
+            transform: scale(1.5);
+        }
+        
+        .marker-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-10px);
+        }
+    }
+    
+    .marker-dot {
+        width: 16px;
+        height: 16px;
+        background-color: map-get($primary-colors, 'memorial-red');
+        border: 2px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease;
+        
+        &.major {
+            width: 24px;
+            height: 24px;
+            background-color: map-get($primary-colors, 'golden-victory');
+            border-color: map-get($primary-colors, 'memorial-red');
+        }
+    }
+    
+    .marker-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(196, 30, 58, 0.4);
+        border-radius: 50%;
+        z-index: 1;
+        animation: mapPulse 2s infinite;
+    }
+    
+    // Tooltip
+    .marker-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        background-color: #fff;
+        padding: map-get($spacing, '3');
+        border-radius: map-get($border-radius, 'md');
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        margin-bottom: 10px;
+        text-align: center;
+        border: 1px solid map-get($primary-colors, 'memorial-red');
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+        }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -7px;
+            border-width: 7px;
+            border-style: solid;
+            border-color: map-get($primary-colors, 'memorial-red') transparent transparent transparent;
+            z-index: -1;
+        }
+        
+        h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: map-get($secondary-colors, 'ink-black');
+        }
+        
+        p {
+            font-size: 0.8rem;
+            color: map-get($neutral-colors, 'gray-600');
+            margin: 0;
+        }
+        
+        .date {
+            display: block;
+            font-size: 0.75rem;
+            color: map-get($primary-colors, 'memorial-red');
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    }
+}
+
+@keyframes mapPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+// --------------------------------------------
+// 3. Map Controls
+// --------------------------------------------
+
+.map-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+    
+    .btn-map-control {
+        width: 36px;
+        height: 36px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.2s ease;
+        font-size: 1.2rem;
+        color: #555;
+        
+        &:hover {
+            background: map-get($neutral-colors, 'gray-100');
+            color: #000;
+        }
+        
+        &:active {
+            background: map-get($neutral-colors, 'gray-200');
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+    }
+}

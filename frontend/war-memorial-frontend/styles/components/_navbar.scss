@@ -1,0 +1,382 @@
+// ============================================
+// 🧭 Navigation Component System
+// ============================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// --------------------------------------------
+// 1. Base Navbar Styles
+// --------------------------------------------
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: map-get($spacing, '3') map-get($spacing, '4');
+    background-color: map-get($neutral-colors, 'white');
+    @include shadow('sm');
+    z-index: map-get($z-index, 'sticky');
+    
+    // Memorial Theme Specifics
+    border-bottom: 3px solid map-get($primary-colors, 'memorial-red');
+    
+    &.navbar-transparent {
+        background-color: transparent;
+        box-shadow: none;
+        border-bottom: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        
+        .nav-link {
+            color: map-get($neutral-colors, 'white');
+            
+            &:hover, &.active {
+                color: map-get($primary-colors, 'golden-victory');
+            }
+        }
+        
+        &.scrolled {
+            background-color: map-get($primary-colors, 'memorial-red-dark');
+            @include shadow('md');
+        }
+    }
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: map-get($spacing, '4');
+    font-size: 1.5rem;
+    line-height: inherit;
+    white-space: nowrap;
+    font-family: map-get($font-families, 'heading');
+    font-weight: map-get($font-weights, 'bold');
+    color: map-get($primary-colors, 'memorial-red-dark');
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    
+    img {
+        height: 40px;
+        margin-right: map-get($spacing, '3');
+    }
+    
+    @include hover {
+        color: map-get($primary-colors, 'memorial-red');
+        text-decoration: none;
+    }
+}
+
+// --------------------------------------------
+// 2. Navigation Links
+// --------------------------------------------
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    
+    @include respond-to('lg') {
+        flex-direction: row;
+    }
+}
+
+.nav-item {
+    margin: 0 map-get($spacing, '1');
+}
+
+.nav-link {
+    display: block;
+    padding: map-get($spacing, '2') map-get($spacing, '3');
+    color: map-get($secondary-colors, 'ink-black');
+    font-weight: map-get($font-weights, 'medium');
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    position: relative;
+    
+    @include respond-to('lg') {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: map-get($primary-colors, 'memorial-red');
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+    }
+    
+    @include hover {
+        color: map-get($primary-colors, 'memorial-red');
+        text-decoration: none;
+        
+        &::after {
+            width: 80%;
+        }
+    }
+    
+    &.active {
+        color: map-get($primary-colors, 'memorial-red-dark');
+        font-weight: map-get($font-weights, 'bold');
+        
+        &::after {
+            width: 100%;
+        }
+    }
+    
+    &.disabled {
+        color: map-get($neutral-colors, 'gray-500');
+        pointer-events: none;
+        cursor: default;
+    }
+}
+
+// --------------------------------------------
+// 3. Navbar Toggler (Mobile)
+// --------------------------------------------
+
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: map-get($border-radius, 'sm');
+    color: map-get($primary-colors, 'memorial-red-dark');
+    border-color: rgba(map-get($primary-colors, 'memorial-red-dark'), 0.1);
+    cursor: pointer;
+    
+    @include respond-to('lg') {
+        display: none;
+    }
+    
+    @include focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(map-get($primary-colors, 'memorial-red'), 0.25);
+    }
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(196, 30, 58, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    
+    @include respond-to('lg') {
+        display: flex;
+        flex-basis: auto;
+    }
+    
+    &.collapse:not(.show) {
+        display: none;
+        
+        @include respond-to('lg') {
+            display: flex;
+        }
+    }
+}
+
+// --------------------------------------------
+// 4. Dropdown Menu
+// --------------------------------------------
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: map-get($z-index, 'dropdown');
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: map-get($spacing, '2') 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: map-get($secondary-colors, 'ink-black');
+    text-align: left;
+    list-style: none;
+    background-color: map-get($neutral-colors, 'white');
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: map-get($border-radius, 'md');
+    @include shadow('lg');
+    
+    &.show {
+        display: block;
+        animation: fadeInUp 0.2s ease-out;
+    }
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: map-get($secondary-colors, 'ink-black');
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+    
+    @include hover {
+        color: map-get($neutral-colors, 'white');
+        text-decoration: none;
+        background-color: map-get($primary-colors, 'memorial-red');
+    }
+    
+    &.active, &:active {
+        color: map-get($neutral-colors, 'white');
+        text-decoration: none;
+        background-color: map-get($primary-colors, 'memorial-red-dark');
+    }
+}
+
+.dropdown-divider {
+    height: 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-top: 1px solid map-get($neutral-colors, 'gray-200');
+}
+
+// --------------------------------------------
+// 5. Top Bar (Above Navbar)
+// --------------------------------------------
+
+.top-bar {
+    background-color: map-get($secondary-colors, 'ink-black');
+    color: map-get($neutral-colors, 'gray-400');
+    padding: map-get($spacing, '1') 0;
+    font-size: 0.875rem;
+    
+    a {
+        color: map-get($neutral-colors, 'gray-400');
+        text-decoration: none;
+        transition: color 0.2s;
+        
+        &:hover {
+            color: map-get($primary-colors, 'golden-victory');
+        }
+    }
+    
+    .top-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .social-icons {
+        display: flex;
+        gap: map-get($spacing, '3');
+    }
+}
+
+// --------------------------------------------
+// 6. Search Form in Navbar
+// --------------------------------------------
+
+.navbar-search {
+    position: relative;
+    margin-left: auto;
+    
+    .form-control {
+        background-color: rgba(0,0,0,0.05);
+        border: none;
+        border-radius: 20px;
+        padding-left: 2.5rem;
+        width: 200px;
+        transition: width 0.3s ease, background-color 0.3s ease;
+        
+        &:focus {
+            width: 250px;
+            background-color: map-get($neutral-colors, 'white');
+            box-shadow: 0 0 0 2px rgba(map-get($primary-colors, 'memorial-red'), 0.2);
+        }
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: map-get($neutral-colors, 'gray-500');
+        pointer-events: none;
+    }
+}
+
+// --------------------------------------------
+// 7. Mega Menu (Optional)
+// --------------------------------------------
+
+.navbar-mega {
+    position: static;
+    
+    .dropdown-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        padding: map-get($spacing, '5');
+        border-radius: 0;
+        margin-top: 0;
+    }
+    
+    .mega-content {
+        display: flex;
+        flex-wrap: wrap;
+        
+        .col {
+            flex: 1;
+            padding: 0 map-get($spacing, '4');
+            border-right: 1px solid map-get($neutral-colors, 'gray-200');
+            
+            &:last-child {
+                border-right: none;
+            }
+        }
+        
+        h6 {
+            color: map-get($primary-colors, 'memorial-red');
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: map-get($spacing, '3');
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            
+            li {
+                margin-bottom: map-get($spacing, '2');
+                
+                a {
+                    color: map-get($secondary-colors, 'ink-black');
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: map-get($primary-colors, 'memorial-red');
+                    }
+                }
+            }
+        }
+    }
+}
