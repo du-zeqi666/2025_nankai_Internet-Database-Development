@@ -59,5 +59,5 @@ eg:DBIS实验室_项目展示(0912635_0912734).pdf/ppt
 文档命名方式：队名_录屏讲解(学号1_学号2_学号3)  
 eg:DBIS实验室_项目展示(0912635_0912734).pdf/ppt  
 ## 实验进展及分工  
-12.6共同完成基础框架搭建  
-12.6-12.7杨中秀完成了数据库的架构以及数据搜索  
+https://nankai.feishu.cn/wiki/DDDYwmQFWiBP4jks6K5cl75UnCh?from=from_copylink  
+项目截止日期：12.24  
