@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "group".
@@ -10,17 +12,15 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string|null $description
- * @property int|null $created_at
- * @property int|null $updated_at
  */
-class Group extends \yii\db\ActiveRecord
+class Group extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'group';
+        return '{{%group}}';
     }
 
     /**
@@ -31,7 +31,6 @@ class Group extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['description'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -43,10 +42,10 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => '用户组名称',
+            'description' => '描述',
+            'created_at' => '创建时间',
+            'updated_at' => '更新时间',
         ];
     }
 }

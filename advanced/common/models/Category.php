@@ -4,24 +4,24 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "timeline".
+ * This is the model class for table "category".
  *
  * @property int $id
- * @property string $title
+ * @property string $name
  * @property string|null $description
- * @property string|null $date
- * @property string|null $image
+ * @property int $status
  */
-class Timeline extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'timeline';
+        return 'category';
     }
 
     /**
@@ -30,10 +30,10 @@ class Timeline extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['name'], 'required'],
             [['description'], 'string'],
-            [['date'], 'safe'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['status'], 'integer'],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,10 +44,8 @@ class Timeline extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => '标题',
+            'name' => '分类名称',
             'description' => '描述',
-            'event_date' => '事件日期',
-            'image_url' => '图片链接',
             'status' => '状态',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',

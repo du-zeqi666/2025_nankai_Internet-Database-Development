@@ -6,22 +6,23 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "timeline".
+ * This is the model class for table "article".
  *
  * @property int $id
  * @property string $title
- * @property string|null $description
- * @property string|null $date
- * @property string|null $image
+ * @property string|null $content
+ * @property int|null $category_id
+ * @property int|null $author_id
+ * @property int|null $view_count
  */
-class Timeline extends \yii\db\ActiveRecord
+class Article extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'timeline';
+        return 'article';
     }
 
     /**
@@ -31,9 +32,9 @@ class Timeline extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['description'], 'string'],
-            [['date'], 'safe'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['content'], 'string'],
+            [['category_id', 'author_id', 'view_count'], 'integer'],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,9 +46,9 @@ class Timeline extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => '标题',
-            'description' => '描述',
-            'event_date' => '事件日期',
-            'image_url' => '图片链接',
+            'content' => '内容',
+            'category_id' => '分类',
+            'author_id' => '作者',
             'status' => '状态',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
