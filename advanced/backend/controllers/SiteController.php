@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'database'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,6 +61,21 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Displays database manager.
+     *
+     * @return string
+     */
+    public function actionDatabase()
+    {
+        // 获取基础 URL 并传递给视图
+        $baseUrl = Yii::$app->request->baseUrl;
+        
+        return $this->render('database', [
+            'baseUrl' => $baseUrl,
+        ]);
     }
 
     /**
