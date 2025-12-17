@@ -1,0 +1,168 @@
+/* 
+ * 🎖️ War Memorial Admin Theme
+ * Based on AdminLTE 2.x (compatible with dmstr/yii2-adminlte-asset)
+ */
+
+:root {
+    --memorial-red-dark: #8B0000;
+    --memorial-red: #C41E3A;
+    --memorial-gold: #DAA520;
+    --memorial-gold-light: #FFD700;
+    --memorial-bg: #F5F5F5;
+    --memorial-text: #333333;
+}
+
+/* General Body */
+body {
+    font-family: "Source Han Serif CN", "Noto Serif SC", "Microsoft YaHei", serif;
+    background-color: var(--memorial-bg);
+}
+
+/* Skin Overrides (Assuming skin-red is used as base) */
+.skin-red .main-header .navbar {
+    background-color: var(--memorial-red-dark) !important;
+    background-image: linear-gradient(to right, #8B0000, #C41E3A);
+}
+
+.skin-red .main-header .logo {
+    background-color: #5D0000 !important; /* Darker red for logo */
+    color: var(--memorial-gold) !important;
+    font-weight: bold;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.skin-red .main-header .logo:hover {
+    background-color: #4a0000 !important;
+}
+
+.skin-red .main-header .navbar .sidebar-toggle:hover {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Sidebar */
+.skin-red .main-sidebar {
+    background-color: #222d32;
+}
+
+.skin-red .sidebar-menu > li.header {
+    color: var(--memorial-gold);
+    background: #1a2226;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.skin-red .sidebar-menu > li.active > a {
+    border-left-color: var(--memorial-gold) !important;
+}
+
+.skin-red .sidebar-menu > li > a:hover {
+    border-left-color: var(--memorial-red) !important;
+}
+
+/* Content Header */
+.content-header > h1 {
+    color: var(--memorial-red-dark);
+    font-weight: bold;
+    border-bottom: 2px solid var(--memorial-gold);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Dashboard Cards */
+.small-box {
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.small-box:hover {
+    transform: translateY(-5px);
+}
+
+.bg-memorial-red {
+    background-color: var(--memorial-red) !important;
+    color: #fff !important;
+}
+
+.bg-memorial-gold {
+    background-color: var(--memorial-gold) !important;
+    color: #fff !important;
+}
+
+.bg-memorial-dark {
+    background-color: #2c3e50 !important;
+    color: #fff !important;
+}
+
+.bg-memorial-green {
+    background-color: #27ae60 !important;
+    color: #fff !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--memorial-red);
+    border-color: var(--memorial-red-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--memorial-red-dark);
+    border-color: #5D0000;
+}
+
+.btn-warning {
+    background-color: var(--memorial-gold);
+    border-color: #B8860B;
+    color: #fff;
+}
+
+/* DataTables / Grids */
+.grid-view th {
+    background-color: #f4f4f4;
+    color: var(--memorial-red-dark);
+    border-bottom: 2px solid var(--memorial-gold) !important;
+}
+
+.box {
+    border-top-color: var(--memorial-red);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.box-title {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Login Page */
+.login-page {
+    background: url('../images/login-bg.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    position: relative;
+}
+
+.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(139, 0, 0, 0.8); /* Red overlay */
+}
+
+.login-box {
+    position: relative;
+    z-index: 1;
+}
+
+.login-logo a {
+    color: var(--memorial-gold) !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.login-box-body {
+    border-top: 5px solid var(--memorial-gold);
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
