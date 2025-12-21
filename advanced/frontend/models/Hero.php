@@ -23,4 +23,8 @@ class Hero extends ActiveRecord
             'photo'
         ];
     }
+    public function getLifeYears()
+    {
+        return $this->birth_year . ' - ' . $this->death_year;
+    }
 }

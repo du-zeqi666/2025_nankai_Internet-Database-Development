@@ -57,4 +57,8 @@ class Hero extends \yii\db\ActiveRecord
             'updated_at' => '更新时间',
         ];
     }
+    public function getLifeYears()
+    {
+        return $this->birth_year . ' - ' . $this->death_year;
+    }
 }

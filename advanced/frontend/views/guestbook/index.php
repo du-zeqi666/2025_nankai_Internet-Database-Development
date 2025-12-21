@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Guestbook Template
  * @var $this yii\web\View
  */
@@ -8,10 +8,26 @@ $this->title = '留言寄语';
 $this->params['bodyClass'] = 'page-guestbook';
 ?>
 
+<style>
+    /* 新增：拉开标题文字和下面装饰的距离 */
+    .page-header p {
+        margin-bottom: 40px;
+    }
+
+    /* 统一的副标题样式 */
+    .hero-subtitle {
+        font-size: 18px;
+        letter-spacing: 3px;
+        color: rgba(0,0,0,.60);
+        font-weight: 500;
+        margin-top: 0.5rem;
+    }
+</style>
+
 <div class="page-header">
     <div class="container">
         <h1>留言寄语</h1>
-        <p>铭记历史，珍爱和平。请留下您的感言，为和平祈愿。</p>
+        <p class="hero-subtitle">铭记历史，珍爱和平。请留下您的感言，为和平祈愿。</p>
     </div>
 </div>
 

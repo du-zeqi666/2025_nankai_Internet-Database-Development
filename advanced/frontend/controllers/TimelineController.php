@@ -1,13 +1,17 @@
 <?php
 namespace frontend\controllers;
 
-use Yii;
 use yii\web\Controller;
+use common\models\Timeline;
 
 class TimelineController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $events = Timeline::getTimelineEvents();
+
+        return $this->render('index', [
+            'events' => $events,
+        ]);
     }
 }

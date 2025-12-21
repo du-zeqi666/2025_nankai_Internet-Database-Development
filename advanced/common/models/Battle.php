@@ -62,4 +62,8 @@ class Battle extends \yii\db\ActiveRecord
             'map_image' => '地图图片',
         ];
     }
+    public function getDuration()
+    {
+        return $this->start_date . ' - ' . $this->end_date;
+    }
 }

@@ -84,6 +84,11 @@ $css = <<<CSS
     margin-top: 0.5rem;
 }
 
+/* 新增：拉开标题文字和下面装饰的距离 */
+.page-header p {
+    margin-bottom: 40px;
+}
+
 CSS;
 $this->registerCss($css);
 // >>> 新增结束

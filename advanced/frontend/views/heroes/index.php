@@ -253,6 +253,11 @@ $css = <<<CSS
     margin-top: 0.5rem;
 }
 
+/* 新增：拉开标题文字和下面装饰的距离 */
+.page-header p {
+    margin-bottom: 40px;
+}
+
 CSS;
 $this->registerCss($css);
 // >>> 新增结束
@@ -333,19 +338,6 @@ $this->params['bodyClass'] = 'page-heroes';
                 </div>
             </div>
             <?php endforeach; ?>
-        </div>
-        
-        <!-- Pagination -->
-        <div class="pagination-wrapper text-center mt-12">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
-                </ul>
-            </nav>
         </div>
     </div>
 </div>

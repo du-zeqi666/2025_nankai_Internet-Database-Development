@@ -1,32 +1,45 @@
 <?php
 use yii\helpers\Url;
 ?>
+<style> 
+    .footer-content {
+        display: flex;
+        gap: 40px;
+    }
+
+    .footer-image {
+        margin-left: auto; /* 关键：推到最右侧 */
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-image img {
+        width: 120px;        /* 你可以改 */
+        max-width: 100%;
+        height: auto;
+        opacity: 0.9;        /* 稍微柔和一点 */
+    }
+</style>
 <footer class="site-footer">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于我们</h3>
-                <p>铭记历史，缅怀先烈，珍爱和平，开创未来。本网站旨在纪念中国人民抗日战争暨世界反法西斯战争胜利80周年，弘扬伟大的抗战精神。</p>
-            </div>
-            <div class="footer-section">
-                <h3>快速链接</h3>
-                <ul>
-                    <li><a href="<?= Url::to(['/hero/index']) ?>">抗战英烈</a></li>
-                    <li><a href="<?= Url::to(['/battle/index']) ?>">重大战役</a></li>
-                    <li><a href="<?= Url::to(['/timeline/index']) ?>">历史时间轴</a></li>
-                    <li><a href="<?= Url::to(['/relic/index']) ?>">文物史料</a></li>
-                </ul>
+                <p>我们是南开大学密码与网络空间安全学院2023级本科生，此网站为《互联网数据库开发》课程的课程大作业成果。</p>
             </div>
             <div class="footer-section">
                 <h3>联系方式</h3>
                 <ul>
-                    <li>邮箱：2313508@mail.nankai.edu.cn</li>
-                    <li>地址：天津市津南区同砚路38号</li>
+                    <li>邮箱：2313508@mail.nankai.edu.cn，2312323@mail.nankai.edu.cn，2312325@mail.nankai.edu.cn，2313546@mail.nankai.edu.cn</li>
+                    <li>地址：天津市津南区同砚路38号南开大学津南校区</li>
                 </ul>
+            </div>
+            <div class="footer-section footer-image">
+                <img src="<?= Url::to('@web/assets/images/footer/footer-logo.png') ?>" alt="网站标识">
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <?= date('Y') ?> 抗战胜利80周年纪念网站 版权所有 | <a href="<?= Url::to(['/site/about']) ?>">关于本站</a></p>
+            <p>&copy; <?= date('Y') ?> 南开大学 <strong>数据四骑士</strong>小组 版权所有 | <a href="<?= Url::to(['/site/about']) ?>">关于本站</a></p>
         </div>
     </div>
 </footer>

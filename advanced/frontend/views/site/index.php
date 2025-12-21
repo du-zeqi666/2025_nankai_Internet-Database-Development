@@ -10,6 +10,21 @@ if (!isset($heroes)) {
  * 主页界面 by 2312323 杨中秀
  */
 
+// [新增] 自动收集背景轮播图片（assets/images/backgrounds/ 下的 jpg/jpeg/png/webp）
+$imagesDir = \Yii::getAlias('@webroot/assets/images/backgrounds/');
+$bgImages = [];
+if (is_dir($imagesDir)) {
+  foreach (glob($imagesDir . '/*.{jpg,jpeg,png,webp}', GLOB_BRACE) as $filePath) {
+    $relative = str_replace(\Yii::getAlias('@webroot'), '', $filePath);
+    $relative = str_replace('\\', '/', $relative); // Windows 路径转为 URL
+    $bgImages[] = Url::to('@web' . $relative);
+  }
+}
+// 兜底：至少有一张
+if (empty($bgImages)) {
+  $bgImages[] = Url::to('@web/assets/images/backgrounds/00quanjingtu.jpg');
+}
+
 $css = <<<CSS
 /*全局：标题/副标题（你说的黑色细体字）美化*/
 .section-title-red{
@@ -32,6 +47,32 @@ $css = <<<CSS
   letter-spacing: 3px;
   color: rgba(0,0,0,.60);
   font-weight: 500;
+}
+
+/* 背景轮播（平移过渡） */
+.hero-background{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+.hero-background .bg-slide{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  transform: translateX(100%); /* 初始在右侧待入场 */
+  opacity: 0;
+  transition: transform 900ms ease-in-out, opacity 900ms ease-in-out;
+  will-change: transform, opacity;
+}
+.hero-background .bg-slide.is-active{
+  transform: translateX(0);    /* 入场到中间 */
+  opacity: 1;
+}
+.hero-background .bg-slide.is-exit{
+  transform: translateX(-100%);/* 出场到左侧 */
+  opacity: 0;
 }
 
 /* 时间轴*/
@@ -61,6 +102,11 @@ $css = <<<CSS
   transform: translateX(-50%);
   background: linear-gradient(to bottom, rgba(180,120,30,0), rgba(180,120,30,.85), rgba(180,120,30,0));
   z-index: 1; 
+}
+
+/* 去掉时间轴中间竖线 */
+.home-war-timeline .timeline-container::before{
+    display: none;
 }
 
 /* 默认就可见 */
@@ -115,6 +161,31 @@ $css = <<<CSS
   transition: opacity .6s ease, transform .6s ease;
 }
 
+
+/* 时间轴事件之间的横向分隔线 */
+.home-war-timeline .hero-timeline__item{
+    position: relative;
+    padding-bottom: 26px;
+    margin-bottom: 26px;
+}
+
+/* 分隔线本身 */
+.home-war-timeline .hero-timeline__item::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0),
+        rgba(180,120,30,.45),
+        rgba(0,0,0,0)
+    );
+}
+
 /* 统计区：更正式的字体 + 放大 */
 #stats-section{
   font-family: "Songti SC","STSong","Noto Serif SC","Source Han Serif SC",
@@ -152,25 +223,25 @@ $css = <<<CSS
 }
 
 /* ============ 按钮美化 ============ */
+/* 首页「瞻仰更多英雄」按钮 - 改为纪念金棕色 */
 .btn-hero-primary{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
-  background: linear-gradient(135deg, #f01f34ff, #f01f34ff);
-  box-shadow: 0 12px 26px rgba(171, 188, 212, 0.28);
-  border: none;
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    background: linear-gradient(
+        135deg,
+        #c9a14a 0%,
+        #a67c1b 100%
+    );
+    color: #3b2a00;
+
+    box-shadow:
+        0 10px 22px rgba(0,0,0,.25),
+        inset 0 1px 1px rgba(255,255,255,.35);
 }
+
 .btn-hero-primary:hover{
-  transform: translateY(-2px);
-  filter: brightness(1.02);
-  box-shadow: 0 16px 32px rgba(222, 213, 99, 0.34);
+    filter: brightness(1.05);
+    box-shadow:
+        0 14px 30px rgba(0,0,0,.30),
+        inset 0 1px 1px rgba(255,255,255,.45);
 }
 
 .btn-gold-outline{
@@ -288,15 +359,138 @@ $css = <<<CSS
 }
 .hero-countdown .number{ color:#8b5e12; }
 
+
+/*改！！！！！！！！！！！！！！！！！！！！！！！！！*/
+.hero-background .overlay{
+    position:absolute;
+    inset:0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.15) 35%,
+        rgba(0,0,0,0.45) 65%,
+        rgba(0,0,0,0.70) 100%
+    );
+    z-index:1;
+}
+.hero-section{
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-content{
+    position: absolute;
+    left: 50%;
+    bottom: 18%;              /* 👈 控制整体高度，推荐 15%~22% */
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-countdown{
+    display: inline-flex;
+    gap: 28px;
+    margin-top: 26px;
+    padding: 12px 28px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(2px);
+}
+
+.hero-countdown .number{
+    color: #f5d48a;   /* 金色，和你整体风格一致 */
+}
+
+.hero-countdown .label{
+    color: rgba(255,255,255,.85);
+}
+
+.hero-title{
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: 2.5px;
+    color: #ffffff;
+
+    text-shadow:
+        0 4px 14px rgba(0,0,0,.45);
+
+    margin: 0;
+}
+.hero-title-wrapper{
+    display: inline-block;
+    padding: 22px 36px 24px;
+    background: rgba(130, 0, 0, 0.55);
+    border-radius: 6px;
+}
+
+.hero-subtitle{
+    margin-top: 18px;
+    padding: 12px 30px;
+
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    color: #ffffff;
+    background: rgba(90, 0, 0, 0.65);
+    border-radius: 4px;
+
+    text-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
 CSS;
 
 $this->registerCss($css);
+
+// [新增] 轮播控制 JS（每 4s 切换一次）
+$this->registerJs(<<<JS
+(function(){
+  const slides = document.querySelectorAll('.hero-background .bg-slide');
+  if (!slides.length) return;
+
+  let idx = 0;
+  const intervalMs = 4000; // 切换间隔
+
+  // 初始状态
+  slides.forEach((s, i) => {
+    s.classList.remove('is-active','is-exit');
+    if (i === 0) s.classList.add('is-active');
+  });
+
+  setInterval(() => {
+    const current = slides[idx];
+    const nextIdx = (idx + 1) % slides.length;
+    const next = slides[nextIdx];
+
+    // 当前图片左侧滑出
+    current.classList.remove('is-active');
+    current.classList.add('is-exit');
+
+    // 下一张右侧滑入
+    next.classList.remove('is-exit');
+    next.classList.add('is-active');
+
+    // 过渡结束后清理出场标记
+    setTimeout(() => current.classList.remove('is-exit'), 950);
+
+    idx = nextIdx;
+  }, intervalMs);
+})();
+JS);
+
 ?>
 
 <!-- [1] HERO SECTION - 首屏震撼区 -->
 <section class="hero-section">
     <div class="hero-background">
-        <img src="<?= \yii\helpers\Url::to('@web/assets/images/sites/quanjingtu.jpg') ?>" alt="纪念馆全景">
+        <!-- 修改：用循环输出多张背景 -->
+        <?php foreach ($bgImages as $i => $imgUrl): ?>
+          <img class="bg-slide <?= $i === 0 ? 'is-active' : '' ?>" src="<?= $imgUrl ?>" alt="背景<?= $i + 1 ?>">
+        <?php endforeach; ?>
+        
         <div class="overlay"></div>
     </div>
 
@@ -316,10 +510,10 @@ $this->registerCss($css);
                 <span class="number">80</span>
                 <span class="label">周年</span>
             </div>
-            <div class="countdown-item">
+            <!-- <div class="countdown-item">
                 <span class="number">270</span>
                 <span class="label">天</span>
-            </div>
+            </div> -->
         </div>
 
         <a href="#stats-section" class="scroll-indicator">

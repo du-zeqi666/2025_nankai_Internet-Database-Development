@@ -3,21 +3,30 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use common\models\Site;
 
 class SitesController extends Controller
 {
     public function actionIndex()
     {
-        return $this->renderContent($this->renderFile('@app/war-memorial-frontend/templates/pages/sites/index.php'));
+        $sites = Site::find()->orderBy(['id' => SORT_ASC])->all();
+
+        return $this->render('index', [
+            'sites' => $sites,
+        ]);
     }
 
     public function actionView($id)
     {
-        $viewFile = '@app/war-memorial-frontend/templates/pages/sites/view.php';
-        if (file_exists(Yii::getAlias($viewFile))) {
-             return $this->renderContent($this->renderFile($viewFile, ['id' => $id]));
-        } else {
-             return $this->renderContent("<h1>场馆详情</h1><p>这里将显示纪念馆的参观指南和详细介绍。</p><p><a href='/sites' class='btn btn-secondary'>返回列表</a></p>");
+        $site = Site::findOne($id);
+
+        if ($site === null) {
+            throw new NotFoundHttpException('未找到该纪念场馆');
         }
+
+        return $this->render('view', [
+            'site' => $site,
+        ]);
     }
 }

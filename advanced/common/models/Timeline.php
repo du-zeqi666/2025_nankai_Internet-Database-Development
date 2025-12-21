@@ -3,54 +3,42 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+
 
 /**
- * This is the model class for table "timeline".
+ * This is the model class for table "historical_event".
  *
  * @property int $id
  * @property string $title
  * @property string|null $description
- * @property string|null $date
- * @property string|null $image
+ * @property string|null $event_date
+ * @property string|null $location
+ * @property int|null $importance_level
+ * @property string|null $cover_image
  */
-class Timeline extends \yii\db\ActiveRecord
+class Timeline extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
-        return 'timeline';
+        return 'historical_event';
     }
 
     /**
-     * {@inheritdoc}
+     * 获取时间轴事件（按时间正序）
      */
-    public function rules()
+    public static function getTimelineEvents()
     {
-        return [
-            [['title'], 'required'],
-            [['description'], 'string'],
-            [['date'], 'safe'],
-            [['title', 'image'], 'string', 'max' => 255],
-        ];
+        return self::find()
+            ->orderBy(['event_date' => SORT_ASC])
+            ->all();
     }
 
     /**
-     * {@inheritdoc}
+     * 格式化日期（显示用）
      */
-    public function attributeLabels()
+    public function getFormattedDate()
     {
-        return [
-            'id' => 'ID',
-            'title' => '标题',
-            'description' => '描述',
-            'event_date' => '事件日期',
-            'image_url' => '图片链接',
-            'status' => '状态',
-            'created_at' => '创建时间',
-            'updated_at' => '更新时间',
-        ];
+        return Yii::$app->formatter->asDate($this->event_date, 'php:Y-m-d');
     }
 }

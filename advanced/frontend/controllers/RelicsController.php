@@ -1,13 +1,19 @@
 <?php
 namespace frontend\controllers;
 
-use Yii;
 use yii\web\Controller;
+use common\models\HistoricalRelic;
 
 class RelicsController extends Controller
 {
     public function actionIndex()
     {
-        return $this->renderContent($this->renderFile('@app/war-memorial-frontend/templates/pages/relics/index.php'));
+        $relics = HistoricalRelic::find()
+            ->orderBy(['id' => SORT_ASC])
+            ->all();
+
+        return $this->render('index', [
+            'relics' => $relics,
+        ]);
     }
 }
