@@ -1,7 +1,6 @@
 <?php
 /**
- * About Page
- * @var $this yii\web\View
+ * @var $developers common\models\Developer[]
  */
 
 use yii\helpers\Html;
@@ -98,32 +97,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>主要负责内容</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>杜泽琦</td>
-                    <td>2313508</td>
-                    <td>密码与网络空间安全学院</td>
-                    <td>项目文档书写，数据库框架搭建与前台页面完善，连接数据库</td>
-                </tr>
-                <tr>
-                    <td>杨中秀</td>
-                    <td>2312323</td>
-                    <td>密码与网络空间安全学院</td>
-                    <td>项目文档书写，数据库框架搭建与前台页面完善，连接数据库，后台界面搭建</td>
-                </tr>
-                <tr>
-                    <td>巩岱松</td>
-                    <td>2312325</td>
-                    <td>密码与网络空间安全学院</td>
-                    <td>前台整体框架搭建，PPT与视频录制，后台界面搭建</td>
-                </tr>
-                <tr>
-                    <td>蒋枘言</td>
-                    <td>2313546</td>
-                    <td>密码与网络空间安全学院</td>
-                    <td>数据库框架搭建与前台页面完善，连接数据库，PPT与视频录制</td>
-                </tr>
-            </tbody>
+                <tbody>
+                    <?php foreach ($developers as $dev): ?>
+                        <tr>
+                            <td><?= Html::encode($dev->name) ?></td>
+                            <td><?= Html::encode($dev->id) ?></td>
+                            <td><?= Html::encode($dev->college) ?></td>
+                            <td style="text-align:left">
+                                <?= Html::encode($dev->content) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
         </table>
 
         <!-- 三、功能与特色（拓展内容） -->

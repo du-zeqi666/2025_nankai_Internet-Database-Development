@@ -15,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\Developer;
 
 /**
  * Site controller
@@ -198,7 +199,13 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $developers = Developer::find()
+            ->orderBy(['id' => SORT_ASC])
+            ->all();
+
+        return $this->render('about', [
+            'developers' => $developers,
+        ]);
     }
 
     /**
