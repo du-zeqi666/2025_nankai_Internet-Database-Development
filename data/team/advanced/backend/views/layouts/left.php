@@ -97,9 +97,7 @@
                     <li class="<?= Yii::$app->controller->id == 'group' ? 'active' : '' ?>">
                         <a href="<?= \yii\helpers\Url::to(['/group/index']) ?>"><i class="fa fa-users"></i> 用户组</a>
                     </li>
-                    <li class="<?= Yii::$app->controller->id == 'media' ? 'active' : '' ?>">
-                        <a href="<?= \yii\helpers\Url::to(['/media/index']) ?>"><i class="fa fa-image"></i> 媒体文件</a>
-                    </li>
+
                     <li class="<?= Yii::$app->controller->id == 'config' ? 'active' : '' ?>">
                         <a href="<?= \yii\helpers\Url::to(['/config/index']) ?>"><i class="fa fa-gear"></i> 系统配置</a>
                     </li>

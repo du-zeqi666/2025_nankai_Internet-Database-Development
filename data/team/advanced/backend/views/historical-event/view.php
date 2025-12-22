@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'location',
                 'importance_level',
                 'description:ntext',
-                'cover_image',
             ],
         ]) ?>
     </div>

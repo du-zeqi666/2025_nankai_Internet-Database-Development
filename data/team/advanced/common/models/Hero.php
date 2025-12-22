@@ -47,14 +47,11 @@ class Hero extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '姓名',
-            'birth_date' => '出生日期',
-            'death_date' => '牺牲日期',
-            'hometown' => '籍贯',
-            'description' => '事迹简介',
-            'image' => '照片',
-            'status' => '状态',
-            'created_at' => '创建时间',
-            'updated_at' => '更新时间',
+            'birth_year' => '出生年份',
+            'death_year' => '牺牲年份',
+            'birth_place' => '籍贯',
+            'introduction' => '事迹简介',
+            'photo' => '照片',
         ];
     }
     public function getLifeYears()

@@ -29,8 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'province',
                 'city',
                 'address',
-                //'opening_hours',
-                //'contact_phone',
+                'opening',
+                'phone',
+                //'transport',
+                //'website',
+                //'image',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],

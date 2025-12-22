@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'era',
                 'current_location',
                 'description:ntext',
-                'image',
             ],
         ]) ?>
     </div>

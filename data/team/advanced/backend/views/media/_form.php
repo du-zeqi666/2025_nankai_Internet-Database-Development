@@ -15,11 +15,11 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <div class="box-body">
 
-    <?= $form->field($model, 'file_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'filename')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file_path')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'filepath')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file_type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'size')->textInput() ?>
 

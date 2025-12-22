@@ -34,8 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'description:ntext',
                 'result',
                 'significance:ntext',
-                'detail_image',
-                'map_image',
             ],
         ]) ?>
     </div>

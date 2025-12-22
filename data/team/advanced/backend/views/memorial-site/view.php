@@ -31,9 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'province',
                 'city',
                 'address',
-                'description:ntext',
-                'opening_hours',
-                'contact_phone',
+                'description',
+                'opening',
+                'phone',
+                'transport',
+                'details:ntext',
+                'website',
             ],
         ]) ?>
     </div>

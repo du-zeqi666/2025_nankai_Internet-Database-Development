@@ -43,11 +43,11 @@ class HistoricalEvent extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['title', 'description', 'event_date'], 'required'],
             [['event_date'], 'safe'],
             [['description'], 'string'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['importance_level'], 'integer'],
+            [['title', 'location', 'cover_image'], 'string', 'max' => 255],
         ];
     }
 
@@ -61,10 +61,9 @@ class HistoricalEvent extends \yii\db\ActiveRecord
             'title' => '事件标题',
             'event_date' => '发生日期',
             'description' => '事件描述',
-            'image' => '图片',
-            'status' => '状态',
-            'created_at' => '创建时间',
-            'updated_at' => '更新时间',
+            'location' => '发生地点',
+            'importance_level' => '重要程度',
+            'cover_image' => '封面图片',
         ];
     }
 }

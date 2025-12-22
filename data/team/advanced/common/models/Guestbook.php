@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  */
 class Guestbook extends ActiveRecord
 {
+    public $gift; // 虚拟属性，用于接收表单中的献礼选项
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +38,7 @@ class Guestbook extends ActiveRecord
             [['user_id', 'created_at'], 'integer'],
             [['content', 'reply_content'], 'string'],
             [['visitor_name'], 'string', 'max' => 255],
+            ['gift', 'safe'], // 允许 gift 属性安全赋值
         ];
     }
 

@@ -105,10 +105,7 @@ $this->title = '仪表盘 - 抗战胜利80周年纪念网站';
                     <ul class="products-list product-list-in-box">
                         <?php foreach ($recentHeroes as $hero): ?>
                         <li class="item">
-                            <div class="product-img">
-                                <img src="<?= Yii::$app->request->baseUrl ?>/images/default-hero.png" alt="Hero Image">
-                            </div>
-                            <div class="product-info">
+                            <div class="product-info" style="margin-left: 0;">
                                 <a href="<?= Url::to(['/hero/view', 'id' => $hero->id]) ?>" class="product-title">
                                     新增英雄：<?= Html::encode($hero->name) ?>
                                     <span class="label label-danger pull-right">英雄</span>
@@ -122,10 +119,7 @@ $this->title = '仪表盘 - 抗战胜利80周年纪念网站';
                         
                         <?php foreach ($recentBattles as $battle): ?>
                         <li class="item">
-                            <div class="product-img">
-                                <img src="<?= Yii::$app->request->baseUrl ?>/images/default-battle.png" alt="Battle Image">
-                            </div>
-                            <div class="product-info">
+                            <div class="product-info" style="margin-left: 0;">
                                 <a href="<?= Url::to(['/battle/view', 'id' => $battle->id]) ?>" class="product-title">
                                     更新战役：<?= Html::encode($battle->name) ?>
                                     <span class="label label-warning pull-right">战役</span>

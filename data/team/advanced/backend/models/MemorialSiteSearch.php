@@ -18,7 +18,7 @@ class MemorialSiteSearch extends MemorialSite
     {
         return [
             [['id'], 'integer'],
-            [['name', 'address', 'province', 'city', 'description', 'opening_hours', 'contact_phone'], 'safe'],
+            [['name', 'address', 'province', 'city', 'description', 'opening', 'phone', 'transport', 'details', 'website', 'image'], 'safe'],
         ];
     }
 
@@ -64,8 +64,8 @@ class MemorialSiteSearch extends MemorialSite
             ->andFilterWhere(['like', 'province', $this->province])
             ->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'opening_hours', $this->opening_hours])
-            ->andFilterWhere(['like', 'contact_phone', $this->contact_phone]);
+            ->andFilterWhere(['like', 'opening', $this->opening])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }

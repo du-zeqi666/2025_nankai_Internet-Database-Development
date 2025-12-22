@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'death_year',
                 'birth_place',
                 'introduction:ntext',
-                'photo',
             ],
         ]) ?>
     </div>

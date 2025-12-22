@@ -33,10 +33,10 @@ class MemorialSite extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
-            [['description'], 'string'],
-            [['name', 'address', 'opening_hours'], 'string', 'max' => 255],
-            [['province', 'city', 'contact_phone'], 'string', 'max' => 50],
+            [['name', 'address', 'province', 'city', 'description', 'opening'], 'required'],
+            [['details'], 'string'],
+            [['name', 'address', 'description', 'transport', 'website', 'image'], 'string', 'max' => 255],
+            [['province', 'city', 'phone', 'opening'], 'string', 'max' => 100],
         ];
     }
 
@@ -47,13 +47,17 @@ class MemorialSite extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => '名称',
-            'address' => '地址',
+            'name' => '场馆全名',
+            'address' => '详细地址',
             'province' => '省份',
             'city' => '城市',
-            'description' => '描述',
-            'opening_hours' => '开放时间',
-            'contact_phone' => '联系电话',
+            'description' => '简要描述',
+            'opening' => '开馆时间',
+            'phone' => '联系电话',
+            'transport' => '交通建议',
+            'details' => '详细介绍',
+            'website' => '官方网站',
+            'image' => '图片路径',
         ];
     }
 }

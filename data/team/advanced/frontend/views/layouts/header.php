@@ -61,8 +61,8 @@ use yii\helpers\Html;
 
     /* 鼠标悬停动画：颜色＋放大一点点 */
     .nav-link:hover {
-        color: #c89b3c;
-        /* 金色主题 */
+        color: #d9534f;
+        /* 红色悬停 */
         transform: translateY(-2px);
     }
 
@@ -74,23 +74,25 @@ use yii\helpers\Html;
         bottom: -3px;
         width: 0%;
         height: 2px;
-        background: #c89b3c;
+        background: #d9534f;
         transition: 0.3s ease;
     }
 
     /* 悬停时出现下划线 */
     .nav-link:hover::after {
         width: 100%;
+        background: #d9534f;
     }
 
     /* 当前页面激活状态 */
     .nav-link.active {
-        color: #c89b3c;
+        color: #d9534f;
         font-weight: bold;
     }
 
     .nav-link.active::after {
         width: 100%;
+        background: #d9534f;
     }
 
     /* 隐藏移动菜单按钮 */
@@ -100,16 +102,17 @@ use yii\helpers\Html;
 
     /* 注册按钮特殊样式（圆角矩形） */
     .nav-register {
-        border: 1.5px solid #c89b3c;
+        border: 1.5px solid #d9534f;
         border-radius: 20px;
         padding: 6px 14px;
         margin-left: 6px;
         transition: all 0.3s ease;
+        color: #d9534f;
     }
 
     /* hover 时填充背景 */
     .nav-register:hover {
-        background-color: #c89b3c;
+        background-color: #d9534f;
         color: #fff;
     }
 
@@ -120,7 +123,7 @@ use yii\helpers\Html;
 
     /* 当前页是注册时 */
     .nav-register.active {
-        background-color: #c89b3c;
+        background-color: #d9534f;
         color: #fff;
     }
 </style>

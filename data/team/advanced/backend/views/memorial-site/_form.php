@@ -23,11 +23,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'opening_hours')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'opening')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'contact_phone')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'transport')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'website')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'details')->textarea(['rows' => 6]) ?>
 
     </div>
     <div class="box-footer">
