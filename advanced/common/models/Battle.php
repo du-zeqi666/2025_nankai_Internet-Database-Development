@@ -66,4 +66,12 @@ class Battle extends \yii\db\ActiveRecord
     {
         return $this->start_date . ' - ' . $this->end_date;
     }
+
+    /**
+     * 获取关联的时间轴事件
+     */
+    public function getTimelines()
+    {
+        return $this->hasMany(Timeline::class, ['related_battle_id' => 'id'])->orderBy(['date' => SORT_ASC]);
+    }
 }

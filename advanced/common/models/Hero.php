@@ -61,4 +61,12 @@ class Hero extends \yii\db\ActiveRecord
     {
         return $this->birth_year . ' - ' . $this->death_year;
     }
+
+    /**
+     * 获取关联的时间轴事件
+     */
+    public function getTimelines()
+    {
+        return $this->hasMany(Timeline::class, ['related_hero_id' => 'id'])->orderBy(['date' => SORT_ASC]);
+    }
 }

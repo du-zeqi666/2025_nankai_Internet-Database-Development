@@ -161,19 +161,28 @@ $this->params['bodyClass'] = 'page-battle-detail';
 <?php if (!empty($battle->timelines)): ?>
 <div class="battle-timeline">
     <div class="container">
-        <div class="section-header">
-            <h2>战役历程</h2>
-        </div>
-        <div class="timeline-container">
-            <?php foreach ($battle->timelines as $item): ?>
-                <div class="timeline-item timeline-event-card">
-                    <div class="timeline-event-date timeline-date"><?= date('Y年m月', strtotime($item->date)) ?></div>
-                    <div class="timeline-content timeline-event-desc">
-                        <h3 class="timeline-event-title"><?= htmlspecialchars($item->title) ?></h3>
-                        <p class="timeline-event-desc-text"><?= htmlspecialchars($item->description) ?></p>
-                    </div>
+        <!-- 与其它区块一致的网格包装 -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="section-header">
+                    <h2>战役历程</h2>
                 </div>
-            <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="timeline-container">
+                    <?php foreach ($battle->timelines as $item): ?>
+                        <div class="timeline-item timeline-event-card">
+                            <div class="timeline-event-date timeline-date"><?= date('Y年m月', strtotime($item->date)) ?></div>
+                            <div class="timeline-content timeline-event-desc">
+                                <h3 class="timeline-event-title"><?= htmlspecialchars($item->title) ?></h3>
+                                <p class="timeline-event-desc-text"><?= htmlspecialchars($item->description) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

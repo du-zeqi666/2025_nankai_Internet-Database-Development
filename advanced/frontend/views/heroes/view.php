@@ -157,19 +157,28 @@ $this->params['bodyClass'] = 'page-hero-detail';
 <!-- 革命历程时间线 -->
 <div class="hero-timeline">
     <div class="container">
-        <div class="section-header">
-            <h2>革命历程</h2>
-        </div>
-        <div class="timeline-container">
-            <?php foreach ($hero->timelines as $item): ?>
-                <div class="hero-timeline__item timeline-item">
-                    <div class="year timeline-date"><?= htmlspecialchars($item->year) ?></div>
-                    <div class="event timeline-content">
-                        <h3 class="event-title"><?= htmlspecialchars($item->title) ?></h3>
-                        <p class="event-desc"><?= htmlspecialchars($item->content) ?></p>
-                    </div>
+        <!-- 与“生平事迹”一致的网格包装，保证左边线统一 -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="section-header">
+                    <h2>革命历程</h2>
                 </div>
-            <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="timeline-container">
+                    <?php foreach ($hero->timelines as $item): ?>
+                        <div class="hero-timeline__item timeline-item">
+                            <div class="year timeline-date"><?= htmlspecialchars($item->year) ?></div>
+                            <div class="event timeline-content">
+                                <h3 class="event-title"><?= htmlspecialchars($item->title) ?></h3>
+                                <p class="event-desc"><?= htmlspecialchars($item->content) ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
