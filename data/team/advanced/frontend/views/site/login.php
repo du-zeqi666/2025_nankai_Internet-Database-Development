@@ -68,6 +68,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::submitButton('立即登录', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
                     </div>
 
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="/advanced/backend/web/index.php?r=site/login" style="color: #999;">后台管理登录</a>
+                    </div>
+
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
