@@ -1,5 +1,10 @@
 <?php
-/**add by 2312323 杨中秀
+/**
+* Team：数据四骑士,NKU
+* Coding by 杨中秀 2312323
+* this is battles list
+*/
+/*
  * Battles List Template
  * @var $this yii\web\View
  */

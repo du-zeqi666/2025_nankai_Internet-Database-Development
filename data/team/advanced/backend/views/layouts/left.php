@@ -1,3 +1,10 @@
+<?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is left layout
+*/
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -80,7 +87,7 @@
                 </ul>
             </li>
 
-            <li class="treeview <?= in_array(Yii::$app->controller->id, ['category', 'user', 'group', 'media', 'config']) ? 'active menu-open' : '' ?>">
+            <li class="treeview <?= in_array(Yii::$app->controller->id, ['category', 'user', 'group', 'media', 'config', 'developer']) ? 'active menu-open' : '' ?>">
                 <a href="#">
                     <i class="fa fa-cogs"></i> <span>系统管理</span>
                     <span class="pull-right-container">
@@ -96,6 +103,10 @@
                     </li>
                     <li class="<?= Yii::$app->controller->id == 'group' ? 'active' : '' ?>">
                         <a href="<?= \yii\helpers\Url::to(['/group/index']) ?>"><i class="fa fa-users"></i> 用户组</a>
+                    </li>
+
+                    <li class="<?= Yii::$app->controller->id == 'developer' ? 'active' : '' ?>">
+                        <a href="<?= \yii\helpers\Url::to(['/developer/index']) ?>"><i class="fa fa-code"></i> 开发者管理</a>
                     </li>
 
                     <li class="<?= Yii::$app->controller->id == 'config' ? 'active' : '' ?>">

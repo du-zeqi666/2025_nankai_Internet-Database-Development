@@ -14,8 +14,12 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $province
  * @property string|null $city
  * @property string $description
- * @property string|null $opening_hours
- * @property string|null $contact_phone
+ * @property string|null $opening
+ * @property string|null $phone
+ * @property string|null $details
+ * @property string|null $transport
+ * @property string|null $website
+ * @property string|null $image
  */
 class MemorialSite extends \yii\db\ActiveRecord
 {

@@ -1,5 +1,10 @@
 <?php
-/**add by 2312323 杨中秀
+/**
+* Team：数据四骑士,NKU
+* Coding by 杨中秀 2312323
+* this is view hero
+*/
+/*
  * Hero Detail Template（动态参数化版本）
  * @var $this yii\web\View
  * @var $hero common\models\Hero

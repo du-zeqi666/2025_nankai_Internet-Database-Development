@@ -69,7 +69,7 @@ $this->title = '仪表盘 - 抗战胜利80周年纪念网站';
         <div class="col-md-8">
             <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">访问趋势 (模拟数据)</h3>
+                    <h3 class="box-title">留言趋势</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
@@ -104,114 +104,91 @@ $this->title = '仪表盘 - 抗战胜利80周年纪念网站';
                 <div class="box-body">
                     <ul class="products-list product-list-in-box">
                         <?php foreach ($recentHeroes as $hero): ?>
-                        <li class="item">
-                            <div class="product-info" style="margin-left: 0;">
-                                <a href="<?= Url::to(['/hero/view', 'id' => $hero->id]) ?>" class="product-title">
-                                    新增英雄：<?= Html::encode($hero->name) ?>
-                                    <span class="label label-danger pull-right">英雄</span>
-                                </a>
-                                <span class="product-description">
-                                    <?= Html::encode(mb_substr($hero->introduction, 0, 40)) ?>...
-                                </span>
-                            </div>
-                        </li>
+                            <li class="item">
+                                <div class="product-info" style="margin-left: 0;">
+                                    <a href="<?= Url::to(['hero/view', 'id' => $hero->id]) ?>" class="product-title"><?= Html::encode($hero->name) ?>
+                                        <span class="label label-warning pull-right">英雄</span></a>
+                                    <span class="product-description">
+                                      <?= Html::encode(mb_substr(strip_tags($hero->introduction), 0, 50)) ?>...
+                                    </span>
+                                </div>
+                            </li>
                         <?php endforeach; ?>
-                        
                         <?php foreach ($recentBattles as $battle): ?>
-                        <li class="item">
-                            <div class="product-info" style="margin-left: 0;">
-                                <a href="<?= Url::to(['/battle/view', 'id' => $battle->id]) ?>" class="product-title">
-                                    更新战役：<?= Html::encode($battle->name) ?>
-                                    <span class="label label-warning pull-right">战役</span>
-                                </a>
-                                <span class="product-description">
-                                    <?= Html::encode(mb_substr($battle->description, 0, 40)) ?>...
-                                </span>
-                            </div>
-                        </li>
+                            <li class="item">
+                                <div class="product-info" style="margin-left: 0;">
+                                    <a href="<?= Url::to(['battle/view', 'id' => $battle->id]) ?>" class="product-title"><?= Html::encode($battle->name) ?>
+                                        <span class="label label-danger pull-right">战役</span></a>
+                                    <span class="product-description">
+                                      <?= Html::encode(mb_substr(strip_tags($battle->description), 0, 50)) ?>...
+                                    </span>
+                                </div>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
                 <div class="box-footer text-center">
-                    <a href="<?= Url::to(['/timeline/index']) ?>" class="uppercase">查看所有动态</a>
+                    <a href="<?= Url::to(['/hero/index']) ?>" class="uppercase">查看所有英雄</a>
+                    <span style="margin: 0 10px;">|</span>
+                    <a href="<?= Url::to(['/battle/index']) ?>" class="uppercase">查看所有战役</a>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <?php
-$contentDataJson = json_encode(array_map(function($item) {
-    return ['value' => $item['value'], 'name' => $item['label']];
-}, $contentData));
+// Register JS for ECharts
+$activityJson = json_encode($activityData);
+$contentJson = json_encode($contentData);
 
-$activityDates = json_encode(array_column($activityData, 'date'));
-$activityCounts = json_encode(array_column($activityData, 'count'));
-
-$script = <<< JS
-    // Visit Chart (Guestbook Activity)
+$js = <<<JS
+    // Initialize Visit Chart
     var visitChart = echarts.init(document.getElementById('visitChart'));
+    var activityData = $activityJson;
+    var dates = activityData.map(function(item) { return item.date; });
+    var counts = activityData.map(function(item) { return item.count; });
+
     var visitOption = {
-        title: {
-            text: '近7日留言趋势',
-            left: 'center'
-        },
         tooltip: {
             trigger: 'axis'
         },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
         xAxis: {
             type: 'category',
-            boundaryGap: false,
-            data: $activityDates
+            data: dates
         },
         yAxis: {
-            type: 'value',
-            minInterval: 1
+            type: 'value'
         },
-        series: [
-            {
-                name: '留言数',
-                type: 'line',
-                stack: 'Total',
-                data: $activityCounts,
-                itemStyle: {
-                    color: '#C41E3A'
-                },
-                areaStyle: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        { offset: 0, color: 'rgba(196, 30, 58, 0.5)' },
-                        { offset: 1, color: 'rgba(196, 30, 58, 0.1)' }
-                    ])
-                }
+        series: [{
+            data: counts,
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+                color: '#dd4b39'
+            },
+            areaStyle: {
+                color: 'rgba(221, 75, 57, 0.2)'
             }
-        ]
+        }]
     };
     visitChart.setOption(visitOption);
 
-    // Content Pie Chart
-    var contentPieChart = echarts.init(document.getElementById('contentPieChart'));
-    var pieOption = {
-        title: {
-            text: '系统内容统计',
-            left: 'center'
-        },
+    // Initialize Content Pie Chart
+    var contentChart = echarts.init(document.getElementById('contentPieChart'));
+    var contentData = $contentJson;
+    
+    var contentOption = {
         tooltip: {
             trigger: 'item'
         },
         legend: {
-            top: '10%',
+            top: '5%',
             left: 'center'
         },
         series: [
             {
-                name: '内容分布',
+                name: '内容统计',
                 type: 'pie',
                 radius: ['40%', '70%'],
                 avoidLabelOverlap: false,
@@ -234,17 +211,20 @@ $script = <<< JS
                 labelLine: {
                     show: false
                 },
-                data: $contentDataJson
+                data: contentData.map(function(item) {
+                    return { value: item.value, name: item.label };
+                })
             }
         ]
     };
-    contentPieChart.setOption(pieOption);
+    contentChart.setOption(contentOption);
 
     // Resize charts on window resize
     window.addEventListener('resize', function() {
         visitChart.resize();
-        contentPieChart.resize();
+        contentChart.resize();
     });
 JS;
-$this->registerJs($script);
+
+$this->registerJs($js);
 ?>

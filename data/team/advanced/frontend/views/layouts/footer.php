@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士,NKU
+* Coding by 杨中秀 2312323
+* this is footer layout
+*/
 use yii\helpers\Url;
 ?>
 <style> 

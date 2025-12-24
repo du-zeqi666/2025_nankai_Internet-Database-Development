@@ -15,6 +15,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $birth_place
  * @property string|null $introduction
  * @property string|null $photo
+ * @property string|null $title
+ * @property string|null $death_place
+ * @property string|null $honor
+ * @property string|null $quote
+ * @property string|null $quote_source
+ * @property string|null $biography
+ * @property string|null $photo_large
  */
 class Hero extends \yii\db\ActiveRecord
 {
@@ -34,8 +41,8 @@ class Hero extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['birth_year', 'death_year'], 'integer'],
-            [['introduction'], 'string'],
-            [['name', 'birth_place', 'photo'], 'string', 'max' => 255],
+            [['introduction', 'biography', 'quote', 'honor'], 'string'],
+            [['name', 'birth_place', 'photo', 'title', 'death_place', 'quote_source', 'photo_large'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,6 +59,13 @@ class Hero extends \yii\db\ActiveRecord
             'birth_place' => '籍贯',
             'introduction' => '事迹简介',
             'photo' => '照片',
+            'title' => '头衔/职务',
+            'death_place' => '牺牲地点',
+            'honor' => '荣誉',
+            'quote' => '名言/诗作',
+            'quote_source' => '名言出处',
+            'biography' => '生平事迹',
+            'photo_large' => '大图',
         ];
     }
     public function getLifeYears()

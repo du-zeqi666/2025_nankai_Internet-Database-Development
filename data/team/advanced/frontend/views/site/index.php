@@ -1,4 +1,10 @@
 ﻿<?php
+/**
+* Team：数据四骑士,NKU
+* Coding by 杜泽琦 2313508
+* this is site index
+*/
+
 use yii\helpers\Url;
 
 // 如果未传递 heroes 变量，则初始化为空数组
@@ -6,9 +12,6 @@ if (!isset($heroes)) {
     $heroes = [];
 }
 
-/**
- * 主页界面 by 2312323 杨中秀
- */
 
 // [新增] 自动收集背景轮播图片（assets/images/backgrounds/ 下的 jpg/jpeg/png/webp）
 $imagesDir = \Yii::getAlias('@webroot/assets/images/backgrounds/');

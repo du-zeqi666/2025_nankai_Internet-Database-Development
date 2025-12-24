@@ -12,10 +12,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string $title
  * @property string|null $event_date
  * @property string|null $description
- * @property string|null $image
- * @property int|null $status
- * @property int|null $created_at
- * @property int|null $updated_at
+ * @property int|null $importance_level
+ * @property string|null $location
+ * @property string|null $cover_image
  */
 class HistoricalEvent extends \yii\db\ActiveRecord
 {

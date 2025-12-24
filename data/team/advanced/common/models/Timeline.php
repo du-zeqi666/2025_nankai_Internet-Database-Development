@@ -7,15 +7,15 @@ use yii\db\ActiveRecord;
 
 
 /**
- * This is the model class for table "historical_event".
+ * This is the model class for table "timeline".
  *
  * @property int $id
  * @property string $title
- * @property string|null $description
- * @property string|null $event_date
- * @property string|null $location
- * @property int|null $importance_level
- * @property string|null $cover_image
+ * @property string $description
+ * @property string $date
+ * @property string|null $image
+ * @property int|null $related_battle_id
+ * @property int|null $related_hero_id
  */
 class Timeline extends ActiveRecord
 {

@@ -1,5 +1,10 @@
 <?php
 /**
+* Team：数据四骑士,NKU
+* Coding by 蒋枘言 2313546
+* this is memorial site detail
+*/
+/**
  * Memorial Site Detail Template
  * @var int $id
  */

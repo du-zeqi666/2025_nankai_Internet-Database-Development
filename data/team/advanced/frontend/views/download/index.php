@@ -1,11 +1,9 @@
 <?php
-
 /**
- * Team Member: Member D
- * Student ID: [Student ID]
- * Task: 作业下载列表视图
- * Date: 2023-XX-XX
- */
+* Team：数据四骑士,NKU
+* Coding by 杜泽琦 2313508
+* this is download
+*/
 
 use yii\helpers\Html;
 use yii\helpers\Url;

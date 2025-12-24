@@ -1,10 +1,9 @@
 <?php
 /**
- * Team: DBIS Lab
- * Authors: Member1, Member2, Member3, Member4
- * Date: 2025-12-09
- * Description: View file for homework downloads.
- */
+* Team：数据四骑士,NKU
+* Coding by 杜泽琦 2313508
+* this is homework
+*/
 
 use yii\helpers\Html;
 

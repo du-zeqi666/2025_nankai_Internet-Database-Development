@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is view timeline
+*/
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -31,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'description:ntext',
                 'date',
                 'image:url',
+                'related_battle_id',
+                'related_hero_id',
             ],
         ]) ?>
     </div>

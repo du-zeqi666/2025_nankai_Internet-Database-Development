@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is view battle
+*/
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -34,6 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'description:ntext',
                 'result',
                 'significance:ntext',
+                'detail_image',
+                'map_image',
             ],
         ]) ?>
     </div>

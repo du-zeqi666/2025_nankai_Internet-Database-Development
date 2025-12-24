@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is user form
+*/
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -18,6 +23,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'profile')->textInput(['maxlength' => true]) ?>
 
     </div>
     <div class="box-footer">

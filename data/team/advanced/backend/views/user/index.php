@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is user list
+*/
 
 use common\models\User;
 use yii\helpers\Html;
@@ -27,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'username',
                 'email:email',
+                'profile',
                 //'created_at:datetime',
                 //'updated_at:datetime',
                 [

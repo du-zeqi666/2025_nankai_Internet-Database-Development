@@ -1,4 +1,9 @@
 <?php
+/**
+* Team：数据四骑士
+* Coding by 巩岱松 2312325
+* this is hero list
+*/
 
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -25,9 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'id',
                 'name',
+                'title',
                 'birth_year',
                 'death_year',
                 'birth_place',
+                'honor',
                 //'description:ntext',
                 //'photo',
                 //'status',
